@@ -1,0 +1,22 @@
+server:
+    port: 8080
+    servlet:
+        context-path: /
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+
+spring:
+    config:
+        activate:
+            on-profile: real # 환경이름설정
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://vino.cluster-cgx0okaondkv.ap-northeast-2.rds.amazonaws.com/vinoverse?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
+        username: vinoverse
+        password: metavin99!!
+        devtools:
+            remote:
+                restart:
+                    enabled: true

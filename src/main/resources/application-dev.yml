@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  config:
+    activate:
+      on-profile: dev # 환경이름설정
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
+    username: root
+    password: 7wjswndek
+    devtools:
+      remote:
+        restart:
+          enabled: true
