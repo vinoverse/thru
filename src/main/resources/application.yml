@@ -13,7 +13,7 @@ server:
 
 spring:
   profiles:
-    active: @spring.profiles.active@
+    active: dev
   servlet:
     multipart:
       max-file-size: 10MB
@@ -23,7 +23,7 @@ spring:
   mail:
     host: smtp.worksmobile.com
     port: 587
-    username: vinoverse@metavin.co.kr
+    username: vinoverse@vanillavoid.co.kr
     password: metavin99!!
     properties:
       mail:

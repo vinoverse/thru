@@ -1,28 +1,35 @@
 import React, { useEffect, useState } from 'react';
 
 import { useWeb3React } from '@web3-react/core';
-import { Row } from 'react-bootstrap';
+import { Row, Button } from 'react-bootstrap';
 import NFTItem from '../component/NFTItem';
+import { Navigate } from 'react-router-dom';
 
-const NFTList = () => {
-    const { account } = useWeb3React();
+
+const NFTList = (props) => {
+    const { account, deactivate } = useWeb3React();
     const [nfts, setNfts] = useState([]);
+    const {apiDomain} = props;
 
     useEffect(() => {   
-        fetch("http://localhost:8080/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
+        fetch(apiDomain + "/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
           setNfts(res["result"]);
         });
-    }, []);
+    }, [apiDomain]);
 
     return (
         <>
-            <div>
+            {account
+            ?<div>
+              <Button variant="dark" onClick={deactivate}>Disconnect</Button>
               <Row xs={1} md={2} className="g-4">
                 {nfts.map((nft) => ( 
                     <NFTItem key={nft.name} nft={nft}/>
                 ))}
               </Row>
             </div>
+            :<Navigate to="/"/>
+            }
         </>
     );
 };

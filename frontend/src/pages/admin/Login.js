@@ -26,7 +26,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-const Login = () => {
+const Login = (props) => {
+    const {login, apiDomain} = props;
+
     const handleSubmit = (event) => {
       event.preventDefault();
       const inputData = new FormData(event.currentTarget);
@@ -42,9 +44,9 @@ const Login = () => {
         body: JSON.stringify(data)
       };
 
-      fetch("http://localhost:8080/api/auth/login", requestOptions).then((res) => res.json()).then((res) => {
-        window.localStorage.setItem('thruUser', res["grantType"] + res["accessToken"]);
-        window.location.href="/admin/qrReader";
+      fetch(apiDomain + "/api/auth/login", requestOptions).then((res) => res.json()).then((res) => {
+        login(res["grantType"] + res["accessToken"]);
+        window.location.href="/admin/event";
         
       }).catch((error) => {
         alert("ID, PASSWORD를 다시 한번 확인해주세요.")

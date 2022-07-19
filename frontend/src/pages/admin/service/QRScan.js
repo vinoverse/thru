@@ -24,21 +24,28 @@ const QRScan = () => {
     const [scandata, setScandata] = useState('');
     const [modalShow, setModalShow] = useState(false);
 
-    const checkValidation = (result) => {
+    const checkValidation = async (result) => {
         if (result !== "") {
             const url = "http://localhost:8080/api/admin/participate?" + result;
             const thruToken = window.localStorage.getItem("thruUser")
             
-            fetch(url,{headers: {
+            const response = await fetch(url,{headers: {
                 'Authorization': thruToken,
-            },}).then((res) => res.json()).then((res) => {
+            }});
+
+            if (response.status === 403) {
+                window.location.href="/admin/login";
+            } else if (!response.ok) {
+                alert("에러 신고 부탁 드립니다.");
+            } else {
+                const res = await response.json();
                 setScandata(res["result"]);
                 setModalShow(true);
                 setTimeout(() => {
                     setModalShow(false);
                     setData("");
                 }, 2000);
-            });
+            }
         }   
     }
 

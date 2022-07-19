@@ -1,27 +1,21 @@
 import React, { useEffect } from 'react';
 
 import { useWeb3React } from '@web3-react/core'
-import { Button, Figure } from 'react-bootstrap';
+import { Figure } from 'react-bootstrap';
 
 import coninbaseImg from '../asserts/coinbase.png'; 
 import metamaskImg from '../asserts/metamask.png';
+import wallectconnectImg from '../asserts/walletconnect.png';
+
 import { useNavigate } from 'react-router-dom';
 import { connectors } from '../component/Connector';
 
 const ConnectWallet = () => {
-    const { account, activate, deactivate} = useWeb3React();
-
-    /*
-    useEffect(() => {
-        const provider = window.localStorage.getItem("provider");
-        if (provider) activate(connectors[provider]);
-      }, []);
-    */
+    const { account, activate } = useWeb3React();
 
     let navigate = useNavigate();
 
     useEffect(() => {
-        console.log(!!account);
         if (!!account) {
             navigate("/nftList");
         }
@@ -29,11 +23,9 @@ const ConnectWallet = () => {
 
     return (
         <div>
-            {account}
             <Figure onClick={() => {activate(connectors.injected);}}><Figure.Image width={160} src={metamaskImg}/></Figure>
             <Figure onClick={() => {activate(connectors.coinbaseWallet)}}><Figure.Image width={160} src={coninbaseImg}/></Figure>
-
-            <Button variant="dark" onClick={deactivate}>Disconnect</Button>
+            <Figure onClick={() => {activate(connectors.walletConnect)}}><Figure.Image width={160} src={wallectconnectImg}/></Figure>
         </div>
     );
 };

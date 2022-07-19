@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Service
 public class EventService {
@@ -28,5 +29,17 @@ public class EventService {
         }
 
         return resultMessage;
+    }
+
+    public List<Event> getEvents(User user) {
+        List<Event> events = null;
+
+        try {
+            events = eventMapper.selectByUserId(user.getId());
+        } catch (Exception e) {
+            events = null;
+        }
+
+        return events;
     }
 }

@@ -18,7 +18,7 @@ public class NFTController {
     @GetMapping("/nfts/{walletAddress}")
     public Map<String, Object> getNFTs(@PathVariable(value = "walletAddress") String walletAddress) {
         Map<String, Object> returnMap = new HashMap<>();
-        List<NFTModel> nftList = nftService.getNftsByOpenseaAPI();
+        List<NFTModel> nftList = nftService.getNft(walletAddress);
         returnMap.put("result", nftList);
         return returnMap;
     }

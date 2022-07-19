@@ -1,12 +1,14 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-const Logout = () => {
-    window.localStorage.removeItem("thruUser");
-    window.location.href="/admin/login";
+const Logout = (props) => {
+    const {logout} = props; 
+
+    logout();
 
     return (
         <div>
-            
+            <Navigate to="/admin/login" />
         </div>
     );
 };

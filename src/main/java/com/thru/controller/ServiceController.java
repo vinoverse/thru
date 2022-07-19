@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -45,6 +46,18 @@ public class ServiceController {
         }
 
         return resultMap;
+    }
+
+    @GetMapping("/event")
+    public List<Event> getEvents(Authentication authentication) {
+        List<Event> events = null;
+
+        if (authentication != null) {
+            PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+            events = eventService.getEvents(principalDetails.getUser());
+        }
+
+        return events;
     }
 
 }
