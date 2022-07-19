@@ -20,7 +20,10 @@ public class PrincipalDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        if (user != null) {
+            authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        }
+
 
         /*
         user.getRoleList().forEach(r -> {

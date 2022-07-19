@@ -27,7 +27,7 @@ public class MoralisNFTService implements NFTService{
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(url).get()
                                         .addHeader("Accept", "application/json")
-                                        .addHeader("X-API-Key", "CYKK096DZJJyrf6JCVyznXVVvgL835FP1GiftptWuccjiFPrbq84fWZnXVOvjA00")
+                                        .addHeader("X-API-Key", "JgcIROYh2hC3pZINC2ndZwtWA3OyYHRU9O0a8C8QsuY5eBAte1FdoQBOzUXsrYgw")
                                         .build();
             Response response = client.newCall(request).execute();
 
