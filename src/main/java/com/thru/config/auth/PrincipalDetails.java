@@ -24,13 +24,6 @@ public class PrincipalDetails implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(user.getRole()));
         }
 
-
-        /*
-        user.getRoleList().forEach(r -> {
-            authorities.add(() -> r);
-        });
-         */
-
         return authorities;
     }
 

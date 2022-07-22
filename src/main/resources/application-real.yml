@@ -11,11 +11,35 @@ spring:
     config:
         activate:
             on-profile: real # 환경이름설정
+
     datasource:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://thru.cluster-cgx0okaondkv.ap-northeast-2.rds.amazonaws.com/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
-        username: metabon
-        password: metavin99!!
+        master:
+            hikari:
+                username: metabon
+                password: metavin99!!
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://thru.cluster-cgx0okaondkv.ap-northeast-2.rds.amazonaws.com/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
+                maximum-pool-size: 10
+                connection-timeout: 5000
+                connection-init-sql: SELECT 1
+                validation-timeout: 2000
+                minimum-idle: 10
+                idle-timeout: 600000
+                max-lifetime: 1800000
+        slave:
+            hikari:
+                username: metabon
+                password: metavin99!!
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://thru.cluster-ro-cgx0okaondkv.ap-northeast-2.rds.amazonaws.com/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
+                maximum-pool-size: 10
+                connection-timeout: 5000
+                connection-init-sql: SELECT 1
+                validation-timeout: 2000
+                minimum-idle: 10
+                idle-timeout: 600000
+                max-lifetime: 1800000
+
         devtools:
             remote:
                 restart:

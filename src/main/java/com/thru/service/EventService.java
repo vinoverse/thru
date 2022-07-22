@@ -7,6 +7,7 @@ import com.thru.model.Participation;
 import com.thru.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -17,6 +18,7 @@ public class EventService {
     @Autowired
     private EventMapper eventMapper;
 
+    @Transactional(readOnly = false)
     public String addEvent(Event event, User user) {
         String resultMessage = "";
 
@@ -31,6 +33,7 @@ public class EventService {
         return resultMessage;
     }
 
+    @Transactional(readOnly = true)
     public List<Event> getEvents(User user) {
         List<Event> events = null;
 

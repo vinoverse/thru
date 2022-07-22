@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -42,6 +43,7 @@ public class AuthService {
         return resultToken;
     }
 
+    @Transactional(readOnly = false)
     public String signup(User user) {
         String resultMessage = "";
 

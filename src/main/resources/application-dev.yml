@@ -12,10 +12,32 @@ spring:
     activate:
       on-profile: dev # 환경이름설정
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
-    username: root
-    password: 7wjswndek
+    master:
+      hikari:
+        username: root
+        password: 7wjswndek
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
+        maximum-pool-size: 10
+        connection-timeout: 5000
+        connection-init-sql: SELECT 1
+        validation-timeout: 2000
+        minimum-idle: 10
+        idle-timeout: 600000
+        max-lifetime: 1800000
+    slave:
+      hikari:
+        username: root
+        password: 7wjswndek
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/thru?serverTimezone=Asia/Seoul&characterEncoding=utf8&useUnicode=true
+        maximum-pool-size: 10
+        connection-timeout: 5000
+        connection-init-sql: SELECT 1
+        validation-timeout: 2000
+        minimum-idle: 10
+        idle-timeout: 600000
+        max-lifetime: 1800000
     devtools:
       remote:
         restart:

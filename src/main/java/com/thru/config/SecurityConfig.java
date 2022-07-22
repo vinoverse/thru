@@ -5,6 +5,7 @@ import com.thru.config.jwt.JwtAuthorizationFilter;
 import com.thru.filter.JwtFilter;
 import com.thru.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,6 +23,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired(required = true)
     private final UserMapper userMapper;
 
     @Bean

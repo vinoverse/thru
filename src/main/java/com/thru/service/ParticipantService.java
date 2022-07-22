@@ -7,6 +7,8 @@ import com.thru.model.Participation;
 import com.thru.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -19,6 +21,7 @@ public class ParticipantService {
     @Autowired
     private ParticipationMapper participationMapper;
 
+    @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
     public String registeParticipation(String contractAddress, Long tokenId, User user) {
         String resultMessage = "등록된 행사가 아닙니다.";
 
