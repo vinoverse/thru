@@ -41,8 +41,8 @@ const NFTItem = (props) => {
 
     return (
         <>
-            <Card>
-                <Card.Img variant="top" src={originUrl} onClick={generateQrCode}/>
+            <Card onClick={generateQrCode}>
+                <Card.Img variant="top" src={originUrl}/>
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                 </Card.Body>

@@ -24,12 +24,10 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Routes>
-        <Route path='/*' element={<ServiceApp apiDomain={apiDomain}/>}></Route>
-        <Route path='/admin/*' element={<AdminApp apiDomain={apiDomain}/>}></Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path='/*' element={<ServiceApp apiDomain={apiDomain}/>}></Route>
+      <Route path='/admin/*' element={<AdminApp apiDomain={apiDomain}/>}></Route>
+    </Routes>
   );
 }
 

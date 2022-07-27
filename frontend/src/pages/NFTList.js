@@ -14,7 +14,7 @@ const NFTList = (props) => {
 
     const [spinner, setSpinner] = useState(false);
 
-    useEffect(() => {   
+    useEffect(() => {
         setSpinner(true);
         fetch(apiDomain + "/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
           setNfts(res["result"]);
