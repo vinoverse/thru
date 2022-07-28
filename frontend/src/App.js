@@ -1,7 +1,6 @@
 import './App.css';
 
 import { Route, Routes } from 'react-router-dom';
-import AdminApp from './pages/admin/AdminApp';
 import { useEffect, useState } from 'react';
 import Login from './pages/admin/Login';
 import Signup from './pages/admin/Signup';
