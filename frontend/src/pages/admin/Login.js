@@ -46,7 +46,7 @@ const Login = (props) => {
 
       fetch(apiDomain + "/api/auth/login", requestOptions).then((res) => res.json()).then((res) => {
         login(res["grantType"] + res["accessToken"]);
-        window.location.href="/admin/event";
+        window.location.href="/event";
         
       }).catch((error) => {
         alert("ID, PASSWORD를 다시 한번 확인해주세요.")

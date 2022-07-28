@@ -10,9 +10,9 @@ const AdminHeader = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-                <Link to="/admin/event" className='nav-link'>Event</Link>
-                <Link to="/admin/qrReader" className='nav-link'>QR Reader</Link>
-                <Link to="/admin/logout" className='nav-link'>Logout</Link>
+                <Link to="/event" className='nav-link'>Event</Link>
+                <Link to="/qrReader" className='nav-link'>QR Reader</Link>
+                <Link to="/logout" className='nav-link'>Logout</Link>
             </Nav>
             </Navbar.Collapse>
         </Container>

@@ -34,7 +34,7 @@ const QRScan = () => {
             }});
 
             if (response.status === 403) {
-                window.location.href="/admin/login";
+                window.location.href="/login";
             } else if (!response.ok) {
                 alert("에러 신고 부탁 드립니다.");
             } else {

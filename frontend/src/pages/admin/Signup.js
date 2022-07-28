@@ -47,7 +47,7 @@ const Signup = (props) => {
       fetch(apiDomain + "/api/auth/signup", requestOptions).then((res) => res.json()).then((res) => {
         if (res["result"] === "success") {
           alert("회원가입이 완료 되었습니다.");
-          window.location.href="/admin/login";
+          window.location.href="/";
         } else {
           alert(res["result"]);
         }
@@ -117,7 +117,7 @@ const Signup = (props) => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/admin/login" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

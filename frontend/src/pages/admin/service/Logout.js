@@ -8,7 +8,7 @@ const Logout = (props) => {
 
     return (
         <div>
-            <Navigate to="/admin/login" />
+            <Navigate to="/" />
         </div>
     );
 };
