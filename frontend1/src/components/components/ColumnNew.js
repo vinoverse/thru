@@ -14,6 +14,8 @@ const ColumnNew = () => {
     useEffect(() => {
         fetch(domain + "/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
             setNftList(res["result"]);
+        }).catch((error) => {
+            setNftList([]);
         });
     }, []);
 
@@ -45,7 +47,7 @@ const ColumnNew = () => {
             {state.nfts.map((nft, index) => ( 
                 <ColumnItem key={index} nft={nft} onImgLoad={onImgLoad} state={state}/>
             ))}
-            { state.nfts.length !== nftList.length &&
+            { !!nftList && state.nfts.length !== nftList.length &&
                 <div className='col-lg-12'>
                     <div className="spacer-single"></div>
                     <span onClick={() => loadMore()} className="btn-main lead m-auto">Load More</span>

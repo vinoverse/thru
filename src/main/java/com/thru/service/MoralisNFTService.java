@@ -5,6 +5,7 @@ import com.thru.model.NFTModel;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ import java.util.Map;
 @Primary
 @Service
 public class MoralisNFTService implements NFTService{
+
+    @CacheEvict(value = "nft", key = "#walletAddress")
+    private void deleteCache(String walletAddress) {}
 
     @Cacheable(value = "nft", key = "#walletAddress")
     @Override
@@ -89,6 +93,7 @@ public class MoralisNFTService implements NFTService{
             return nftList;
 
         } catch (Exception e) {
+            deleteCache(walletAddress);
             e.printStackTrace();
         }
 
