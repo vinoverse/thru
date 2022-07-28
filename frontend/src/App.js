@@ -2,7 +2,6 @@ import './App.css';
 
 import { Route, Routes } from 'react-router-dom';
 import AdminApp from './pages/admin/AdminApp';
-import ServiceApp from './pages/ServiceApp';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -24,10 +23,11 @@ function App() {
   }, []);
 
   return (
+    <>
     <Routes>
-      <Route path='/*' element={<ServiceApp apiDomain={apiDomain}/>}></Route>
       <Route path='/admin/*' element={<AdminApp apiDomain={apiDomain}/>}></Route>
     </Routes>
+    </>
   );
 }
 
