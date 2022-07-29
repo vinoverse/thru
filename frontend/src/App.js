@@ -42,8 +42,8 @@ function App() {
     <>
     <Routes>
       <Route path='/admin' element={<Login login={login}/>} ></Route>
-      <Route path='/admin/signup' element={<Signup apiDomain={apiDomain}/>}></Route>
-      <Route path="/admin/*" element={<AdminServiceApp logout={logout} user={user} apiDomain={apiDomain}/>}></Route>
+      <Route path='/admin/signup' element={<Signup />}></Route>
+      <Route path="/admin/*" element={<AdminServiceApp logout={logout} user={user}/>}></Route>
     </Routes>
     </>
   );

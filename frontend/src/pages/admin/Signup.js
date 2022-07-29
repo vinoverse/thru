@@ -27,8 +27,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Signup = (props) => {
-    const {apiDomain} = props;
-
     const handleSubmit = (event) => {
       event.preventDefault();
       const inputData = new FormData(event.currentTarget);
@@ -44,10 +42,10 @@ const Signup = (props) => {
         body: JSON.stringify(data)
       };
 
-      fetch(apiDomain + "/api/auth/signup", requestOptions).then((res) => res.json()).then((res) => {
+      fetch("/api/auth/signup", requestOptions).then((res) => res.json()).then((res) => {
         if (res["result"] === "success") {
           alert("회원가입이 완료 되었습니다.");
-          window.location.href="/";
+          window.location.href="/admin";
         } else {
           alert(res["result"]);
         }

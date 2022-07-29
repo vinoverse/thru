@@ -10,7 +10,7 @@ const AdminServiceApp = (props) => {
     const {user} = props;
 
     if (user === null) {
-        window.location.href="/admin/login";
+        window.location.href="/admin/";
     }
 
     return (

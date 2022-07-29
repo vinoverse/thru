@@ -26,7 +26,7 @@ const QRScan = () => {
 
     const checkValidation = async (result) => {
         if (result !== "") {
-            const url = "http://localhost:8080/api/admin/participate?" + result;
+            const url = "/api/admin/participate?" + result;
             const thruToken = window.localStorage.getItem("thruUser")
             
             const response = await fetch(url,{headers: {

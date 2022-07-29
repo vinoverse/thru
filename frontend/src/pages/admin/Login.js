@@ -27,7 +27,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = (props) => {
-    const {login, apiDomain} = props;
+    const {login} = props;
 
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -46,7 +46,7 @@ const Login = (props) => {
 
       fetch("/api/auth/login", requestOptions).then((res) => res.json()).then((res) => {
         login(res["grantType"] + res["accessToken"]);
-        window.location.href="/event";
+        window.location.href="/admin/event";
         
       }).catch((error) => {
         alert("ID, PASSWORD를 다시 한번 확인해주세요.")

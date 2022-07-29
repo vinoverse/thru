@@ -3,8 +3,6 @@ import { Form, Button, ListGroup, Placeholder } from 'react-bootstrap';
 import EventItem from '../../../component/EventItem';
 
 const Event = (props) => {
-    const { apiDomain } = props;
-
     const [updateInputs, setUpdateInputs] = useState({
         eventName: "",
         contractAddress: "",
@@ -26,7 +24,7 @@ const Event = (props) => {
             "contractAddress": contractAddress
         }
 
-        const url = apiDomain + "/api/admin/event";
+        const url = "/api/admin/event";
         const thruToken = window.localStorage.getItem("thruUser");
 
         const response = await fetch(url, {
@@ -56,7 +54,7 @@ const Event = (props) => {
     const [events, setEvents] = useState([]);
 
     const getEvent = async () => {
-        const url = apiDomain + "/api/admin/event";
+        const url = "/api/admin/event";
         const thruToken = window.localStorage.getItem("thruUser");
 
         const response = await fetch(url, {
@@ -78,10 +76,8 @@ const Event = (props) => {
     }
 
     useEffect(() => {
-        if (!!apiDomain) {
-            getEvent();
-        }
-    }, [apiDomain]);
+        getEvent();
+    }, []);
 
 
     return (
