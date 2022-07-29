@@ -44,7 +44,7 @@ const Login = (props) => {
         body: JSON.stringify(data)
       };
 
-      fetch(apiDomain + "/api/auth/login", requestOptions).then((res) => res.json()).then((res) => {
+      fetch("/api/auth/login", requestOptions).then((res) => res.json()).then((res) => {
         login(res["grantType"] + res["accessToken"]);
         window.location.href="/event";
         
