@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
-import { Redirect } from '@reach/router';
 import ColumnItem from './ColumnItem';
+import { SpinnerModal } from "./SpinnerModal";
 
 const ColumnNew = () => {
     const {account} = useSelector((store) => store);
@@ -10,11 +10,15 @@ const ColumnNew = () => {
         nfts: [],
         height: 0
     });
+    const [modalShow, setModalShow] = useState(false);
 
     useEffect(() => {
+        setModalShow(true);
         fetch("/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
+            setModalShow(false);
             setNftList(res["result"]);
         }).catch((error) => {
+            setModalShow(false);
             setNftList([]);
         });
     }, []);
@@ -43,7 +47,8 @@ const ColumnNew = () => {
     }
     
     return (
-        <div className='row'> 
+        <div className='row'>
+            <SpinnerModal show={modalShow} onHide={() => setModalShow(false)} />
             {state.nfts.map((nft, index) => ( 
                 <ColumnItem key={index} nft={nft} onImgLoad={onImgLoad} state={state}/>
             ))}

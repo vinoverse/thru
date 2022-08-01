@@ -2,12 +2,17 @@ import React, {useEffect} from 'react';
 import { connectors } from './Connector';
 import { useWeb3React } from '@web3-react/core';
 import { setAccount } from '../../Store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Redirect } from '@reach/router';
 
 const WalletItem= (props) => {
-    const { account, activate } = useWeb3React();
+    const { account, activate, deactivate } = useWeb3React();
     const dispatcher = useDispatch();
+
+    useEffect(() => {
+        deactivate();
+        dispatcher(setAccount(''));
+    }, []);
     
     if (!!account) {
         dispatcher(setAccount(account));

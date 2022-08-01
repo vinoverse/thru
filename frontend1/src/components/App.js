@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Router, Location } from '@reach/router';
 import ScrollToTopBtn from './menu/ScrollToTop';
 import Header from './menu/header';
@@ -6,10 +6,8 @@ import Explore from './pages/Explore';
 import Wallet from './pages/Wallet';
 
 import { createGlobalStyle } from 'styled-components';
-import { Web3ReactProvider, useWeb3React } from '@web3-react/core';
+import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
-import { useDispatch } from 'react-redux';
-import { setDomain } from '../Store';
 
 const GlobalStyles = createGlobalStyle`
   :root {

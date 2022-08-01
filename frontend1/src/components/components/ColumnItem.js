@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import QRCode from 'qrcode'
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 const MyVerticallyCenteredModal = (props) => {
     const {qrurl, imgurl} = props;

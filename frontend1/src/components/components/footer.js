@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '@reach/router';
 
 const footer= () => (
-  <footer className="footer-light">
+        <footer className="footer-light">
             <div className="container">
                 <div className="row">
                     <div className="col-md-3 col-sm-6 col-xs-1">
@@ -70,7 +70,7 @@ const footer= () => (
                             <div className="de-flex">
                                 <div className="de-flex-col">
                                     <span onClick={()=> window.open("", "_self")}>
-                                        <span className="copy">&copy; Copyright 2021 - Gigaland by Designesia</span>
+                                        <span className="copy">&copy; VANILLA VOID Rights Reserved</span>
                                     </span>
                                 </div>
                                 <div className="de-flex-col">
