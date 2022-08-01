@@ -1637,6 +1637,14 @@ footer{
   &.footer-light {
       border-top: solid 1px rgba(255,255,255,.025);
       color: $white;
+      a.gray {
+        color: #7F7F7F;
+        font-weight: 400;
+        text-decoration: none !important;
+        &:hover{
+          color: #7F7F7F;
+        }
+      }
       a {
         color: $white;
         font-weight: 400;

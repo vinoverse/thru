@@ -9,12 +9,10 @@ const footer= () => (
                         <div className="widget">
                             <h5>Marketplace</h5>
                             <ul>
-                                <li><Link to="">All NFTs</Link></li>
-                                <li><Link to="">Art</Link></li>
-                                <li><Link to="">Music</Link></li>
-                                <li><Link to="">Domain Names</Link></li>
-                                <li><Link to="">Virtual World</Link></li>
-                                <li><Link to="">Collectibles</Link></li>
+                                <li><Link to="">NFTs</Link></li>
+                                <li><Link to="">Concerts</Link></li>
+                                <li><Link to="">Arts &amp; Theater</Link></li>
+                                <li><Link to="" className="gray">Coming soon…</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -23,11 +21,7 @@ const footer= () => (
                             <h5>Resources</h5>
                             <ul>
                                 <li><Link to="">Help Center</Link></li>
-                                <li><Link to="">Partners</Link></li>
-                                <li><Link to="">Suggestions</Link></li>
-                                <li><Link to="">Discord</Link></li>
-                                <li><Link to="">Docs</Link></li>
-                                <li><Link to="">Newsletter</Link></li>
+                                <li><Link to="">About Us</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -36,11 +30,6 @@ const footer= () => (
                             <h5>Community</h5>
                             <ul>
                                 <li><Link to="">Community</Link></li>
-                                <li><Link to="">Documentation</Link></li>
-                                <li><Link to="">Brand Assets</Link></li>
-                                <li><Link to="">Blog</Link></li>
-                                <li><Link to="">Forum</Link></li>
-                                <li><Link to="">Mailing List</Link></li>
                             </ul>
                         </div>
                     </div>
