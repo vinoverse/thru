@@ -61,7 +61,7 @@ const footer= () => (
                             <div className="de-flex">
                                 <div className="de-flex-col">
                                     <span onClick={()=> window.open("", "_self")}>
-                                        <span className="copy">&copy; Copyright 2022 – WHAT by Metabon  Corp.,</span>
+                                        <span className="copy">&copy; Copyright 2022 – WAHT by Metabon  Corp.,</span>
                                     </span>
                                 </div>
                                 <div className="de-flex-col">
