@@ -21,7 +21,9 @@ const footer= () => (
                             <h5>Resources</h5>
                             <ul>
                                 <li><Link to="">Help Center</Link></li>
-                                <li><Link to="">About Us</Link></li>
+                                <li><Link to=""> - What is Web3 wallet?</Link></li>
+                                <li><Link to=""> - How do I use this service?</Link></li>
+                                <li><a href="https://www.metabon.com/aboutus"target="_blank">About Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -59,16 +61,12 @@ const footer= () => (
                             <div className="de-flex">
                                 <div className="de-flex-col">
                                     <span onClick={()=> window.open("", "_self")}>
-                                        <span className="copy">&copy; VANILLA VOID Rights Reserved</span>
+                                        <span className="copy">&copy; Copyright 2022 – WHAT by Metabon  Corp.,</span>
                                     </span>
                                 </div>
                                 <div className="de-flex-col">
                                     <div className="social-icons">
-                                        <span onClick={()=> window.open("", "_self")}><i className="fa fa-facebook fa-lg"></i></span>
-                                        <span onClick={()=> window.open("", "_self")}><i className="fa fa-twitter fa-lg"></i></span>
-                                        <span onClick={()=> window.open("", "_self")}><i className="fa fa-linkedin fa-lg"></i></span>
-                                        <span onClick={()=> window.open("", "_self")}><i className="fa fa-pinterest fa-lg"></i></span>
-                                        <span onClick={()=> window.open("", "_self")}><i className="fa fa-rss fa-lg"></i></span>
+                                        <span onClick={()=> window.open("", "_self")}><i className="fa fa-instagram fa-lg"></i></span>
                                     </div>
                                 </div>
                             </div>
