@@ -43,23 +43,6 @@ function getLibrary(provider) {
 }
 
 const App = () => {
-  const dispatcher = useDispatch();
-
-  const getDoamin = () => {
-    let domain = window.location.origin;
-
-    if (domain.search("http://localhost") > -1) {
-      domain = "http://localhost";
-    }
-
-    domain += ":8080";
-    dispatcher(setDomain(domain));
-  }
-
-  useEffect(() => {
-    getDoamin();
-  }, []);
-
   return (
   <div className="wraper">
   <GlobalStyles />

@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    account: '',
-    domain: '',
+    account: ''
 };
 
 const walletaccount = createSlice({
@@ -11,12 +10,9 @@ const walletaccount = createSlice({
   reducers: {
     setAccount(state, action) {
       state.account = action.payload;
-    },
-    setDomain(state, action) {
-      state.domain = action.payload;
     }
   }
 });
 
-export const { setAccount, setDomain } = walletaccount.actions;
+export const { setAccount } = walletaccount.actions;
 export default walletaccount.reducer;

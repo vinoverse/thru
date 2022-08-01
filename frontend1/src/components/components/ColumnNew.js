@@ -4,7 +4,7 @@ import { Redirect } from '@reach/router';
 import ColumnItem from './ColumnItem';
 
 const ColumnNew = () => {
-    const {account, domain} = useSelector((store) => store);
+    const {account} = useSelector((store) => store);
     const [nftList, setNftList] = useState([]);
     const [state, setState] = useState({
         nfts: [],
@@ -12,7 +12,7 @@ const ColumnNew = () => {
     });
 
     useEffect(() => {
-        fetch(domain + "/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
+        fetch("/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
             setNftList(res["result"]);
         }).catch((error) => {
             setNftList([]);
