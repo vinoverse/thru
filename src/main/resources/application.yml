@@ -23,7 +23,7 @@ spring:
   mail:
     host: smtp.worksmobile.com
     port: 587
-    username: vinoverse@vanillavoid.co.kr
+    username: vinoverse@vanillavoid.com
     password: metavin99!!
     properties:
       mail:

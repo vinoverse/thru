@@ -2,12 +2,14 @@ package com.thru.controller;
 
 import com.thru.config.auth.PrincipalDetails;
 import com.thru.model.Event;
+import com.thru.model.TicketSendError;
 import com.thru.service.EventService;
 import com.thru.service.ParticipantService;
+import com.thru.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,9 @@ public class ServiceController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private TicketService ticketService;
 
     @GetMapping("/participate")
     public Map<String, Object> checkParticipante(Authentication authentication, @RequestParam String conAdr, @RequestParam Long tokenId) {
@@ -60,4 +65,25 @@ public class ServiceController {
         return events;
     }
 
+    @PostMapping("/sendTicket")
+    public Map<String, String> sendTicket(@RequestParam("file") MultipartFile file) {
+        Map<String, String> resultMap = new HashMap<>();
+
+        int errorCount = ticketService.sendTicket(file);
+        resultMap.put("errorCount", String.valueOf(errorCount));
+
+        return resultMap;
+    }
+
+    @GetMapping("/ticketSendError")
+    public List<TicketSendError> getTicketError(Authentication authentication) {
+        List<TicketSendError> ticketSendErrors = null;
+
+        if (authentication != null) {
+            PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+            ticketSendErrors = ticketService.getTicketSendErrorList(principalDetails.getUser().getId());
+        }
+
+        return ticketSendErrors;
+    }
 }
