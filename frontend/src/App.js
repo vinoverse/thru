@@ -7,19 +7,6 @@ import Signup from './pages/admin/Signup';
 import AdminServiceApp from './pages/admin/service/AdminServiceApp';
 
 function App() {
-  const [apiDomain, setApiDomain] = useState("");
-
-  const getDoamin = () => {
-    let domain = window.location.origin;
-
-    if (domain.search("http://localhost") > -1) {
-      domain = "http://localhost";
-    }
-
-    domain += ":8080";
-    setApiDomain(domain);
-  }
-
   const [user, setUser] = useState('');
 
   const login = (token) => {
@@ -35,7 +22,6 @@ function App() {
   useEffect(() => {
     const thruUser = window.localStorage.getItem('thruUser');
     setUser(thruUser);
-    getDoamin();
   }, []);
 
   return (

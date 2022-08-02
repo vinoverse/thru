@@ -5,6 +5,7 @@ import QRScan from './QRScan';
 import AdminHeader from './AdminHeader';
 import Event from './Event';
 import Logout from './Logout';
+import Ticket from './Ticket';
 
 const AdminServiceApp = (props) => {
     const {user} = props;
@@ -20,6 +21,7 @@ const AdminServiceApp = (props) => {
                 <Routes>
                     <Route path='/qrReader' element={<QRScan {...props}/>}></Route>
                     <Route path='/event' element={<Event {...props}/>}></Route>
+                    <Route path='/ticket' element={<Ticket {...props}/>}></Route>
                     <Route path='/logout' element={<Logout {...props} />}></Route>                    
                 </Routes>
             </Container>

@@ -71,7 +71,6 @@ const Event = (props) => {
         } else {
             const data = await response.json();
             setEvents(data);
-            console.log(events);
         }
     }
 
@@ -83,7 +82,7 @@ const Event = (props) => {
     return (
         <>
         <Placeholder xs={12} size="xs" />
-        <ListGroup as="ol" numbered>
+        <ListGroup as="ol">
             {events.map((event) => (
                 <EventItem key={event.id} event={event} />
             ))}

@@ -9,7 +9,7 @@ const EventItem = (props) => {
     return (
         <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
             <div className="ms-2 me-auto">
-                <div className="fw-bold">{event.title}</div>
+                <div className="fw-bold">{event.id}. {event.title}</div>
                 {event.contractAddress}
             </div>
         </ListGroup.Item>
