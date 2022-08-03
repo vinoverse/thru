@@ -35,11 +35,15 @@ const Ticket = () => {
             alert("에러 신고 부탁 드립니다.");
         } else {
             const data = await response.data;
-            const errCount = data["errorCount"];
-            if (errCount == 0) {
-                alert("해당 이메일로 티켓을 발송하였습니다.");
+            const successCount = data["successCount"];
+            const errorCount = data["errorCount"];
+
+            if (errorCount === -1) {
+                alert("엑셀 파일에 오류가 있습니다. 확인 부탁 드립니다.");
+            } else if (errorCount === 0) {
+                alert("해당 이메일로 티켓을 발송하였습니다.\n전송한 티켓 개수 : " + successCount);
             } else {
-                alert("티켓 전송에 실패한 사용자가 있습니다. 확인해주세요.\n에러 항목 : " + errCount);
+                alert("티켓 전송에 실패한 사용자가 있습니다. 확인해주세요.\n전송한 티켓 개수 : " + successCount + "\n에러 항목 : " + errorCount);
             }
             window.location.reload();
         }

@@ -17,6 +17,9 @@ public interface EventMapper {
     @Select("SELECT * FROM Event WHERE user_id=#{userId}")
     List<Event> selectByUserId(@Param("userId") Long userId);
 
+    @Select("SELECT * FROM Event WHERE id=#{id} AND user_id=#{userId}")
+    Event selectByIdAndUserId(@Param("id") Long id, @Param("userId") Long userId);
+
     @Insert("INSERT INTO Event(user_id, title, contract_address) VALUES(#{userId}, #{title}, #{contractAddress})")
     int insert(Event event);
 }

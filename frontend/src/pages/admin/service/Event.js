@@ -19,6 +19,11 @@ const Event = (props) => {
     };
 
     const saveEvent = async () => {
+        if (!eventName || !contractAddress) {
+            alert("이벤트 정보를 입력해주세요.");
+            return;
+        }
+
         const data = {
             "title": eventName,
             "contractAddress": contractAddress

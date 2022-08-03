@@ -29,11 +29,13 @@ public class ServiceController {
     private TicketService ticketService;
 
     @GetMapping("/participate")
-    public Map<String, Object> checkParticipante(Authentication authentication, @RequestParam String conAdr, @RequestParam Long tokenId) {
+    public Map<String, Object> checkParticipante(Authentication authentication, @RequestParam(value = "conAdr", required = false) String conAdr, @RequestParam(value = "tokenId", required = false) Long tokenId,
+                                                 @RequestParam(value = "eventId", required = false) Long eventId, @RequestParam(value = "email", required = false) String email) {
         Map<String, Object> resultMap = new HashMap<>();
+        
         if (authentication != null) {
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-            String resultMessage = participantService.registeParticipation(conAdr, tokenId, principalDetails.getUser());
+            String resultMessage = participantService.registeParticipation(conAdr, tokenId, eventId, email, principalDetails.getUser());
             resultMap.put("result", resultMessage);
         }
 
@@ -66,12 +68,8 @@ public class ServiceController {
     }
 
     @PostMapping("/sendTicket")
-    public Map<String, String> sendTicket(@RequestParam("file") MultipartFile file) {
-        Map<String, String> resultMap = new HashMap<>();
-
-        int errorCount = ticketService.sendTicket(file);
-        resultMap.put("errorCount", String.valueOf(errorCount));
-
+    public Map<String, Integer> sendTicket(@RequestParam("file") MultipartFile file) {
+        Map<String, Integer> resultMap = ticketService.sendTicket(file);
         return resultMap;
     }
 

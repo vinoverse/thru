@@ -30,7 +30,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TicketService {
@@ -46,28 +48,39 @@ public class TicketService {
     @Autowired
     private EventMapper eventMapper;
 
-    public int sendTicket(MultipartFile file) {
+    public Map<String, Integer> sendTicket(MultipartFile file) {
         List<ExcelData> dataList = null;
+
+        Map<String, Integer> resultMap = new HashMap<>();
+
+        int errorCount = 0;
+        int successCount = 0;
 
         try {
             dataList = readExcel(file);
         } catch (Exception e) {
+            errorCount = -1;
             e.printStackTrace();
         }
 
-        int errorCount = 0;
-
-        if (dataList != null) {
-            for (ExcelData excelData : dataList) {
-                String content = "eventId=" + excelData.getEventId() + "&email=" + excelData.getEmail();
-                boolean mailResult = makeQRcodeAndSendToMail(excelData.getEmail(), content);
-                if (mailResult == false) {
-                    errorCount++;
+        if (errorCount == 0) {
+            if (dataList != null) {
+                for (ExcelData excelData : dataList) {
+                    String content = "eventId=" + excelData.getEventId() + "&email=" + excelData.getEmail();
+                    boolean mailResult = makeQRcodeAndSendToMail(excelData.getEmail(), content);
+                    if (mailResult == false) {
+                        errorCount++;
+                    } else {
+                        successCount++;
+                    }
                 }
             }
         }
 
-        return errorCount;
+        resultMap.put("errorCount", errorCount);
+        resultMap.put("successCount", successCount);
+
+        return resultMap;
     }
 
     private List<ExcelData> readExcel(MultipartFile file) throws Exception {
@@ -93,6 +106,10 @@ public class TicketService {
             Row row = worksheet.getRow(i);
 
             ExcelData data = new ExcelData();
+
+            if (row.getCell(0) == null || row.getCell(1) == null) {
+                break;
+            }
 
             data.setEventId((long) row.getCell(0).getNumericCellValue());
             data.setEmail(row.getCell(1).getStringCellValue());
