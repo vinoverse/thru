@@ -56,7 +56,6 @@ const App = () => {
         </Web3ReactProvider>
         <ScrollToTopBtn />
       </div>
-      <div class="md-overlay"></div>
     </>
   );
 }

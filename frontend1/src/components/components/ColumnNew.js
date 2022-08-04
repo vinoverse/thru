@@ -2,6 +2,47 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import ColumnItem from './ColumnItem';
 import { SpinnerModal } from "./SpinnerModal";
+import { QRCode } from 'qrcode';
+import { Modal } from 'react-bootstrap';
+
+const MyVerticallyCenteredModal = (props) => {
+    const {qrurl, imgurl, modalShow, setModalShow} = props;
+
+    return (
+        <div className={"md-modal md-effect-1 " + (modalShow ? "md-show" : '')} onClick={() => {setModalShow(false);}}>
+            <div className="modal-content md-content">
+                <Modal.Body>
+                    <div>
+                        <span class="TICKET">TICKET</span>
+                        <img src={qrurl} className="Rectangle-3" /> 
+                    </div>
+                    <img src="./img/ticket/dotline.png" className="Rectangle-3" /> 
+                    <div>
+                        <div class="Line-2">
+                            <span className="NFT">NFT</span>
+                            <img src={imgurl} className="Rectangle-4"/> 
+                        </div>
+                        <div class="Line-3">
+                            <div className="ticketInfo">
+                                <span className="DATE">DATE</span><br />
+                                <span className="type">Sept 18th, 2022</span>
+                            </div>
+                            <div className="ticketInfo">
+                                <span className="DATE">VALID FOR</span>
+                                <img src="./img/ticket/people.png" className="download" /><br />
+                                <span className="type">1 person</span>
+                            </div>
+                            <div>
+                                <span class="DATE">SEAT</span><br />
+                                <span className="type">VIP SEAT</span>
+                            </div>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </div>
+        </div>
+    );
+}
 
 const ColumnNew = () => {
     const {account} = useSelector((store) => store);
@@ -45,12 +86,25 @@ const ColumnNew = () => {
             setState({...state, height: img.offsetHeight})
         }
     }
+
+    const [ qrUrl, setQrUrl ] = useState('');
+    const [ originUrl, setOriginUrl ] = useState('');
+    const [ qrModalShow, setQrModalShow ] = useState(false);
+
+    const closeModal = () => {
+        if (qrModalShow) {
+            setQrModalShow(false);
+            setQrUrl('');
+            setOriginUrl('');
+        }
+    }
     
     return (
+        <>
         <div className='row'>
             <SpinnerModal show={modalShow} onHide={() => setModalShow(false)} />
             {state.nfts.map((nft, index) => ( 
-                <ColumnItem key={index} nft={nft} onImgLoad={onImgLoad} state={state}/>
+                <ColumnItem key={index} nft={nft} onImgLoad={onImgLoad} state={state} setModalShow={setQrModalShow} modalShow={qrModalShow} setQrUrl={setQrUrl} setOriginUrl={setOriginUrl}/>
             ))}
             { !!nftList && state.nfts.length !== nftList.length &&
                 <div className='col-lg-12'>
@@ -59,6 +113,13 @@ const ColumnNew = () => {
                 </div>
             }
         </div>
+        <MyVerticallyCenteredModal modalShow={qrModalShow} setModalShow={setQrModalShow} qrurl={qrUrl} imgurl={originUrl}/>
+        {qrModalShow 
+        ? <div class="fade modal-backdrop show" onClick={closeModal}></div>
+        : ''
+        }
+        
+        </>
     );
 };
 
