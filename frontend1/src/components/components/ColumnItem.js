@@ -3,26 +3,41 @@ import QRCode from 'qrcode'
 import { Modal } from 'react-bootstrap';
 
 const MyVerticallyCenteredModal = (props) => {
-    const {qrurl, imgurl} = props;
+    const {qrurl, imgurl, modalShow, setModalShow} = props;
 
     return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Body>
-            <img src={imgurl} className="qr_img"/> 
-            <img src={qrurl} className="qr_img" /> 
-        </Modal.Body>
-        <Modal.Footer>
-            <div className='col-lg-12'>
-                <div className="spacer-single"></div>
-                <span onClick={props.onHide} className="btn-main lead m-auto">Close</span>
+        <div className={"md-modal md-effect-1 " + (modalShow ? "md-show" : '')} onClick={() => {setModalShow(false);}}>
+            <div className="modal-content md-content" size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Body>
+                    <div>
+                        <span class="TICKET">TICKET</span>
+                        <img src={qrurl} className="Rectangle-3" /> 
+                    </div>
+                    <img src="./img/ticket/dotline.png" className="Rectangle-3" /> 
+                    <div>
+                        <div class="Line-2">
+                            <span className="NFT">NFT</span>
+                            <img src={imgurl} className="Rectangle-4"/> 
+                        </div>
+                        <div class="Line-3">
+                            <div className="ticketInfo">
+                                <span className="DATE">DATE</span><br />
+                                <span className="type">Sept 18th, 2022</span>
+                            </div>
+                            <div className="ticketInfo">
+                                <span className="DATE">VALID FOR</span>
+                                <img src="./img/ticket/people.png" className="download" /><br />
+                                <span className="type">1 person</span>
+                            </div>
+                            <div>
+                                <span class="DATE">SEAT</span><br />
+                                <span className="type">VIP SEAT</span>
+                            </div>
+                        </div>
+                    </div>
+                </Modal.Body>
             </div>
-        </Modal.Footer>
-      </Modal>
+        </div>
     );
 }
 
@@ -34,9 +49,13 @@ const ColumnItem = (props) => {
 
     const generateQrCode = async () => {
       try {
-        const respone = await QRCode.toDataURL("conAdr=" + contract + "&tokenId=" + tokenId);
-        setQrUrl(respone);
-        setModalShow(true);
+        if (modalShow) {
+            setModalShow(false);
+        } else {
+            const respone = await QRCode.toDataURL("conAdr=" + contract + "&tokenId=" + tokenId);
+            setQrUrl(respone);
+            setModalShow(true);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -58,7 +77,7 @@ const ColumnItem = (props) => {
                     </div> 
                 </div>
             </div>
-            <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} qrurl={qrUrl} imgurl={originUrl}/>
+            <MyVerticallyCenteredModal modalShow={modalShow} setModalShow={setModalShow} qrurl={qrUrl} imgurl={originUrl}/>
         </>
     );
 };

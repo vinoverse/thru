@@ -32,7 +32,7 @@ public class ServiceController {
     public Map<String, Object> checkParticipante(Authentication authentication, @RequestParam(value = "conAdr", required = false) String conAdr, @RequestParam(value = "tokenId", required = false) Long tokenId,
                                                  @RequestParam(value = "eventId", required = false) Long eventId, @RequestParam(value = "email", required = false) String email) {
         Map<String, Object> resultMap = new HashMap<>();
-        
+
         if (authentication != null) {
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
             String resultMessage = participantService.registeParticipation(conAdr, tokenId, eventId, email, principalDetails.getUser());

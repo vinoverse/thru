@@ -1,0 +1,128 @@
+.TICKET {
+  width: 134px;
+  height: 27px;
+  margin-left: 10px;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.39;
+  letter-spacing: normal;
+  text-align: left;
+  color: #030303;
+}
+
+.Rectangle-3 {
+  width: 100%;
+  margin: 0px 0px 10px 0px;
+  border-radius: 5px;
+}
+
+.NFT {
+  margin-left: 10px;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.39;
+  letter-spacing: normal;
+  text-align: left;
+  color: #030303;
+}
+
+.Rectangle-4 {
+  margin: 5px 5px 10px 5px;
+  width: 90%;
+  border-radius: 5px;
+  background-color: #67686d;
+}
+
+.Line-2 {
+  width: 48%;
+  border-right: solid 1px #000;
+  float:left;
+}
+.Line-3 {
+  width: 48%;
+  float:right;
+}
+
+.DATE {
+  margin-left: 10px;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.39;
+  letter-spacing: normal;
+  text-align: left;
+  color: #030303;
+  display: inline;
+}
+
+.ticketInfo {
+  border-bottom: solid 1px #000;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.type {
+  margin: 0px 0px 5px 10px;
+  font-family: Arial;
+  font-size: 13px;
+  float: left;
+}
+
+.download {
+  width: 20%;
+  float: right;
+}
+
+
+
+.md-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 50%;
+	max-width: 630px;
+	min-width: 320px;
+	height: auto;
+	z-index: 2000;
+	visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.md-show {
+	visibility: visible;
+}
+
+/* Effect 1: Fade in and scale up */
+.md-effect-1 .md-content {
+	-webkit-transform: scale(0.7);
+	-moz-transform: scale(0.7);
+	-ms-transform: scale(0.7);
+	transform: scale(0.7);
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.md-show.md-effect-1 .md-content {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}

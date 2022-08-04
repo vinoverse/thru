@@ -42,20 +42,22 @@ function getLibrary(provider) {
 
 const App = () => {
   return (
-  <div className="wraper">
-  <GlobalStyles />
-    <Header/>
-      <Web3ReactProvider getLibrary={getLibrary}>
-      <PosedRouter>
-        <ScrollTop path="/">
-          <Wallet path="/"/>
-          <Explore path="/explore"/>
-        </ScrollTop>
-      </PosedRouter>
-      </Web3ReactProvider>
-    <ScrollToTopBtn />
-    
-  </div>
+    <>
+      <div className="wraper">
+        <GlobalStyles />
+        <Header/>
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <PosedRouter>
+            <ScrollTop path="/">
+              <Wallet path="/" />
+              <Explore path="/explore" />
+            </ScrollTop>
+          </PosedRouter>
+        </Web3ReactProvider>
+        <ScrollToTopBtn />
+      </div>
+      <div class="md-overlay"></div>
+    </>
   );
 }
 export default App;
