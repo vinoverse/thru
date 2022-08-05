@@ -70,7 +70,7 @@ public class MoralisNFTService implements NFTService{
                     }
                 }
 
-                if (image == ""){
+                if ((image == "") && (metadata != null)){
                     ObjectMapper tokenMapper = new ObjectMapper();
                     Map<String, Object> tokenMap = tokenMapper.readValue(metadata, Map.class);
 
