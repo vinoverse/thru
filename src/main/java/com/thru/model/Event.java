@@ -8,4 +8,5 @@ public class Event {
     private long userId;
     private String title;
     private String contractAddress;
+    private String info;
 }

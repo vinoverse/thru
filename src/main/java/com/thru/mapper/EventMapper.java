@@ -17,9 +17,20 @@ public interface EventMapper {
     @Select("SELECT * FROM Event WHERE user_id=#{userId}")
     List<Event> selectByUserId(@Param("userId") Long userId);
 
+    @Select({"<script>",
+            "SELECT *",
+            "FROM Event",
+            "WHERE contract_address IN",
+            "<foreach item='item' index='index' collection='contractAddressList'",
+            "open='(' separator=',' close=')'>",
+            "#{item}",
+            "</foreach>",
+            "</script>"})
+    List<Event> selectByContractAddressList(@Param("contractAddressList") List contractAddressList);
+
     @Select("SELECT * FROM Event WHERE id=#{id} AND user_id=#{userId}")
     Event selectByIdAndUserId(@Param("id") Long id, @Param("userId") Long userId);
 
-    @Insert("INSERT INTO Event(user_id, title, contract_address) VALUES(#{userId}, #{title}, #{contractAddress})")
+    @Insert("INSERT INTO Event(user_id, title, contract_address, info) VALUES(#{userId}, #{title}, #{contractAddress}, #{info})")
     int insert(Event event);
 }

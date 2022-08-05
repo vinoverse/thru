@@ -1,31 +1,27 @@
-import React, {useState} from 'react';
-import QRCode from 'qrcode'
-import { Modal } from 'react-bootstrap';
+import React from 'react';
 
 
 const ColumnItem = (props) => {
     const { contract, tokenId, originUrl, name } = props.nft;
-    const { onImgLoad, state, setModalShow, modalShow, setQrUrl, setOriginUrl } = props;
-    
+    const { onImgLoad, state, setQrModalShow, modalShow, eventList, setEventList, setListModalShow, generateQrCode, setContractInfo } = props;
 
-    const generateQrCode = async () => {
-      try {
+    const showModal = async () => {
         if (modalShow) {
-            setModalShow(false);
+            setQrModalShow(false);
         } else {
-            const respone = await QRCode.toDataURL("conAdr=" + contract + "&tokenId=" + tokenId);
-            setOriginUrl(originUrl);
-            setQrUrl(respone);
-            setModalShow(true);
+            if (eventList.length === 1) {
+                generateQrCode(eventList[0], contract, tokenId, originUrl)
+            } else {
+                setEventList(eventList);
+                setContractInfo({contract: contract, tokenId: tokenId, originUrl: originUrl})
+                setListModalShow(true);
+            }
         }
-      } catch (error) {
-        console.log(error);
-      }
     }
 
     return (
         <>
-            <div className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4" onClick={generateQrCode}>
+            <div className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4" onClick={showModal}>
                 <div className="nft__item m-0">
                     <div className="nft__item_wrap" style={{height: `${state.height}px`}}>
                         <span>
@@ -36,6 +32,9 @@ const ColumnItem = (props) => {
                         <span>
                             <h4>{name}</h4>
                         </span>
+                        <div className="nft__item_like">
+                            <i className="fa fa-ticket"></i><span>{eventList.length}</span>
+                        </div>                            
                     </div> 
                 </div>
             </div>

@@ -1,7 +1,7 @@
 package com.thru.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thru.model.NFTModel;
+import com.thru.model.NFT;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -24,7 +24,7 @@ public class MoralisNFTService implements NFTService{
 
     @Cacheable(value = "nft", key = "#walletAddress")
     @Override
-    public List<NFTModel> getNft(String walletAddress) {
+    public List<NFT> getNft(String walletAddress) {
         RestTemplate restTemplate = new RestTemplate();
         try {
             String url = "https://deep-index.moralis.io/api/v2/" + walletAddress + "/nft?chain=eth&format=decimal";
@@ -39,10 +39,10 @@ public class MoralisNFTService implements NFTService{
             Map<String, Object> map = mapper.readValue(response.body().string(), Map.class);
             List<Map<String, Object>> nftInfo = (ArrayList<Map<String, Object>>) map.get("result");
 
-            List<NFTModel> nftList = new ArrayList<>();
+            List<NFT> nftList = new ArrayList<>();
 
             for (Map<String, Object> item : nftInfo) {
-                NFTModel nftModel = new NFTModel();
+                NFT nftModel = new NFT();
 
                 nftModel.setContract((String) item.get("token_address"));
                 nftModel.setTokenId((String) item.get("token_id"));

@@ -21,6 +21,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -120,6 +122,7 @@ public class TicketService {
         return dataList;
     }
 
+    @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
     private boolean makeQRcodeAndSendToMail(String mailReciver, String qrContent) {
         String savePath = "qrImage";
         File file = new File(savePath);

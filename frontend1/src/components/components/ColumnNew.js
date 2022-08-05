@@ -1,66 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import ColumnItem from './ColumnItem';
-import { SpinnerModal } from "./SpinnerModal";
-import { QRCode } from 'qrcode';
-import { Modal } from 'react-bootstrap';
+import { SpinnerModal } from "./modal/SpinnerModal";
+import { TicketModal } from "./modal/TicketModal";
+import { EventListModal } from './modal/EventListModal';
+import QRCode from 'qrcode'
 
-const MyVerticallyCenteredModal = (props) => {
-    const {qrurl, imgurl, modalShow, setModalShow} = props;
-
-    return (
-        <div className={"md-modal md-effect-1 " + (modalShow ? "md-show" : '')} onClick={() => {setModalShow(false);}}>
-            <div className="modal-content md-content">
-                <Modal.Body>
-                    <div>
-                        <span class="TICKET">TICKET</span>
-                        <img src={qrurl} className="Rectangle-3" /> 
-                    </div>
-                    <img src="./img/ticket/dotline.png" className="Rectangle-3" /> 
-                    <div>
-                        <div class="Line-2">
-                            <span className="NFT">NFT</span>
-                            <img src={imgurl} className="Rectangle-4"/> 
-                        </div>
-                        <div class="Line-3">
-                            <div className="ticketInfo">
-                                <span className="DATE">DATE</span><br />
-                                <span className="type">Sept 18th, 2022</span>
-                            </div>
-                            <div className="ticketInfo">
-                                <span className="DATE">VALID FOR</span>
-                                <img src="./img/ticket/people.png" className="download" /><br />
-                                <span className="type">1 person</span>
-                            </div>
-                            <div>
-                                <span class="DATE">SEAT</span><br />
-                                <span className="type">VIP SEAT</span>
-                            </div>
-                        </div>
-                    </div>
-                </Modal.Body>
-            </div>
-        </div>
-    );
-}
 
 const ColumnNew = () => {
     const {account} = useSelector((store) => store);
     const [nftList, setNftList] = useState([]);
+    const [eventMap, setEventMap] = useState({});
+    const [eventList, setEventList] = useState([]);
+    const [ticketEvent, setTicketEvent] = useState({});
     const [state, setState] = useState({
         nfts: [],
         height: 0
     });
+    const [contractInfo, setContractInfo] = useState({
+        contract: '',
+        tokenId: '',
+        originUrl: '',
+    })
     const [modalShow, setModalShow] = useState(false);
 
     useEffect(() => {
         setModalShow(true);
         fetch("/api/user/nfts/" + account).then((res) => res.json()).then((res) => {
             setModalShow(false);
-            setNftList(res["result"]);
+            setNftList(res["nftList"]);
+            setEventMap(res["eventMap"]);
         }).catch((error) => {
             setModalShow(false);
             setNftList([]);
+            setEventMap({});
         });
     }, []);
 
@@ -90,21 +63,40 @@ const ColumnNew = () => {
     const [ qrUrl, setQrUrl ] = useState('');
     const [ originUrl, setOriginUrl ] = useState('');
     const [ qrModalShow, setQrModalShow ] = useState(false);
+    const [ listModalShow, setListModalShow ] = useState(false);
 
     const closeModal = () => {
         if (qrModalShow) {
             setQrModalShow(false);
+            setListModalShow(false);
             setQrUrl('');
             setOriginUrl('');
         }
     }
+
+    const generateQrCode = async (eventItem, contract, tokenId, originUrl) => {
+        try {
+            const respone = await QRCode.toDataURL("conAdr=" + contract + "&tokenId=" + tokenId);
+            setQrUrl(respone);
+            setOriginUrl(originUrl);
+            setTicketEvent(eventItem);
+            setQrModalShow(true);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+  
     
     return (
         <>
         <div className='row'>
             <SpinnerModal show={modalShow} onHide={() => setModalShow(false)} />
-            {state.nfts.map((nft, index) => ( 
-                <ColumnItem key={index} nft={nft} onImgLoad={onImgLoad} state={state} setModalShow={setQrModalShow} modalShow={qrModalShow} setQrUrl={setQrUrl} setOriginUrl={setOriginUrl}/>
+            {state.nfts.map((nft, index) => (
+                <ColumnItem key={index} nft={nft} onImgLoad={onImgLoad} state={state} 
+                    setQrModalShow={setQrModalShow} modalShow={qrModalShow} 
+                    eventList={eventMap[nft.contract]} setEventList={setEventList} setListModalShow={setListModalShow}
+                    generateQrCode={generateQrCode} setContractInfo={setContractInfo}
+                />
             ))}
             { !!nftList && state.nfts.length !== nftList.length &&
                 <div className='col-lg-12'>
@@ -113,9 +105,10 @@ const ColumnNew = () => {
                 </div>
             }
         </div>
-        <MyVerticallyCenteredModal modalShow={qrModalShow} setModalShow={setQrModalShow} qrurl={qrUrl} imgurl={originUrl}/>
-        {qrModalShow 
-        ? <div class="fade modal-backdrop show" onClick={closeModal}></div>
+        <EventListModal show={listModalShow} onHide={() => setListModalShow(false)} eventlist={eventList} setlistmodalshow={setListModalShow} setticketmodalshow={setQrModalShow} generateqrcode={generateQrCode} contractinfo={contractInfo}/>
+        <TicketModal modalShow={qrModalShow} setTicketModalShow={setQrModalShow} qrurl={qrUrl} imgurl={originUrl} ticketEvent={ticketEvent}/>
+        {qrModalShow || listModalShow
+        ? <div className="fade modal-backdrop show" onClick={closeModal}></div>
         : ''
         }
         

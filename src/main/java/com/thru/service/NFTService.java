@@ -1,9 +1,9 @@
 package com.thru.service;
 
-import com.thru.model.NFTModel;
+import com.thru.model.NFT;
 
 import java.util.List;
 
 public interface NFTService {
-    public List<NFTModel> getNft(String walletAddress);
+    public List<NFT> getNft(String walletAddress);
 }

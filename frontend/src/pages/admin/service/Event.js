@@ -8,7 +8,7 @@ const Event = (props) => {
         contractAddress: "",
     });
 
-    const { eventName, contractAddress } = updateInputs;
+    const { eventName, contractAddress, infoTitle1, infoTitle2, infoTitle3, infoValue1, infoValue2, infoValue3 } = updateInputs;
     
     const onChange = (e) => {
         const { value, name } = e.target;
@@ -26,7 +26,15 @@ const Event = (props) => {
 
         const data = {
             "title": eventName,
-            "contractAddress": contractAddress
+            "contractAddress": contractAddress,
+            "info": JSON.stringify({
+                "infoTitle1": infoTitle1,
+                "infoTitle2": infoTitle2,
+                "infoTitle3": infoTitle3,
+                "infoValue1": infoValue1,
+                "infoValue2": infoValue2,
+                "infoValue3": infoValue3,
+            })
         }
 
         const url = "/api/admin/event";
@@ -103,6 +111,25 @@ const Event = (props) => {
                 <Form.Label>Smart Contract 주소</Form.Label>
                 <Form.Control type="input" placeholder="Contract 주소" name="contractAddress" onChange={onChange} value={contractAddress}/>
             </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicContractName">
+                <Form.Label>Info 1</Form.Label>
+                <Form.Control type="input" placeholder="제목" name="infoTitle1" onChange={onChange} value={infoTitle1}/>
+                <Form.Control type="input" placeholder="값" name="infoValue1" onChange={onChange} value={infoValue1}/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicContractName">
+                <Form.Label>Info 2</Form.Label>
+                <Form.Control type="input" placeholder="제목" name="infoTitle2" onChange={onChange} value={infoTitle2}/>
+                <Form.Control type="input" placeholder="값" name="infoValue2" onChange={onChange} value={infoValue2}/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicContractName">
+                <Form.Label>Info 3</Form.Label>
+                <Form.Control type="input" placeholder="제목" name="infoTitle3" onChange={onChange} value={infoTitle3}/>
+                <Form.Control type="input" placeholder="값" name="infoValue3" onChange={onChange} value={infoValue3}/>
+            </Form.Group>
+            
             <Button variant="primary" onClick={saveEvent}>
                 등록
             </Button>

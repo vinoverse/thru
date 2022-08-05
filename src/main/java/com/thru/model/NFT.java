@@ -3,7 +3,7 @@ package com.thru.model;
 import lombok.Data;
 
 @Data
-public class NFTModel {
+public class NFT {
     private String contract;
     private String tokenId;
     private String ownerAddress;

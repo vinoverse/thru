@@ -1,7 +1,7 @@
 package com.thru.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thru.model.NFTModel;
+import com.thru.model.NFT;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class OpenseaNFTService implements NFTService{
 
     @Override
-    public List<NFTModel> getNft(String walletAddress) {
+    public List<NFT> getNft(String walletAddress) {
         RestTemplate restTemplate = new RestTemplate();
         try {
             String url = "https://api.opensea.io/api/v1/assets?owner=0xd1B948b9eB3D433d780b9E699f5494429e4CA51D&limit=10";
@@ -530,10 +530,10 @@ public class OpenseaNFTService implements NFTService{
 
             List<Map<String, Object>> nftInfo = (ArrayList<Map<String, Object>>) map.get("assets");
 
-            List<NFTModel> nftList = new ArrayList<>();
+            List<NFT> nftList = new ArrayList<>();
 
             for (Map<String, Object> item : nftInfo) {
-                NFTModel nftModel = new NFTModel();
+                NFT nftModel = new NFT();
                 nftModel.setName((String) item.get("name"));
                 nftModel.setTokenId((String) item.get("token_id"));
                 nftModel.setOriginUrl((String) item.get("image_original_url"));
