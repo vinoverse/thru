@@ -27,7 +27,11 @@ const ColumnItem = (props) => {
                 <div className="nft__item m-0">
                     <div className="nft__item_wrap" style={{height: `${state.height}px`}}>
                         <span>
-                            <img onLoad={onImgLoad} src={originUrl} className="lazy nft__item_preview" alt=""/>
+                            {originUrl.search("mp4") > -1
+                            ? <video onLoad={onImgLoad} src={originUrl} className="lazy nft__item_preview" alt="" width="100%" autoplay="true"/>
+                            : <img onLoad={onImgLoad} src={originUrl} className="lazy nft__item_preview" alt=""/>
+                            }
+                            
                         </span>
                     </div>
                     <div className="nft__item_info">
