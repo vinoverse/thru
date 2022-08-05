@@ -32,7 +32,7 @@ public class ParticipantService {
         String resultMessage = "등록된 행사가 아닙니다.";
 
         if (contractAddress != null) {
-            Event event = eventMapper.selectByContractAddressAndUserId(contractAddress, user.getId());
+            Event event = eventMapper.selectByContractAddressAndUserId(eventId, contractAddress, user.getId());
             if (event != null) {
                 Long initEventId = event.getId();
 
