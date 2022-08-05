@@ -9,13 +9,15 @@ const ColumnItem = (props) => {
         if (modalShow) {
             setQrModalShow(false);
         } else {
-            if (eventList.length === 1) {
-                generateQrCode(eventList[0], contract, tokenId, originUrl)
-            } else {
-                setEventList(eventList);
-                setContractInfo({contract: contract, tokenId: tokenId, originUrl: originUrl})
-                setListModalShow(true);
-            }
+            if (eventList) {
+                if (eventList.length === 1) {
+                    generateQrCode(eventList[0], contract, tokenId, originUrl)
+                } else {
+                    setEventList(eventList);
+                    setContractInfo({contract: contract, tokenId: tokenId, originUrl: originUrl})
+                    setListModalShow(true);
+                }
+            }   
         }
     }
 
