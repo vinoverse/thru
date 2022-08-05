@@ -11,8 +11,8 @@ import java.util.List;
 
 @Mapper
 public interface EventMapper {
-    @Select("SELECT * FROM Event WHERE contract_address=#{contractAddress} AND user_id=#{userId}")
-    Event selectByContractAddressAndUserId(@Param("eventId") Long eventId, @Param("contractAddress") String contractAddress, @Param("userId") Long userId);
+    @Select("SELECT * FROM Event WHERE id=#{id} AND contract_address=#{contractAddress} AND user_id=#{userId}")
+    Event selectByContractAddressAndUserId(@Param("id") Long id, @Param("contractAddress") String contractAddress, @Param("userId") Long userId);
 
     @Select("SELECT * FROM Event WHERE user_id=#{userId}")
     List<Event> selectByUserId(@Param("userId") Long userId);
