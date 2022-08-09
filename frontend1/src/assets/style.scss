@@ -58,15 +58,21 @@ $color_more: #333;
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap');
 
+@font-face { /* 애플산돌고딕 폰트 적용 */
+  font-family: "SDGothic";
+  src: url('font/AppleSDGothicNeoB.ttf') format('truetype');
+  font-weight: normal;
+} /* 이후 "SDGothic"으로 폰트 적용 가능 */
+
 
 /*general*/
 html {scroll-behavior: auto;}
 body {
-  font-family: "Roboto Slab", Helvetica, Arial, sans-serif;
+  font-family: 'SDGothic', serif;
   font-weight: 300;
   font-size: 16px;
   color: $general;
-  background: #FAF6F1;
+  background: $white;
   word-spacing: 0px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -334,7 +340,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: 'Bungee', cursive;
+    font-family: 'SDGothic', serif;
     margin-top: 0;
     font-weight: 700;
     color: #0d0c22;
@@ -431,7 +437,7 @@ h2.s1,
     font-size: 24px;
 }
 h2.deco-text span {
-    font-family: "Parisienne";
+    font-family: 'SDGothic', serif;;
     display: block;
     line-height: .85em;
     font-weight: lighter;
@@ -483,12 +489,12 @@ h4.s1 {
     font-size: 16px;
 }
 h4.s2 {
-    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-family: 'SDGothic', serif;
     font-weight: 200;
     line-height: 1.8em;
 }
 h4.s3 {
-    font-family: "Parisienne";
+    font-family: 'SDGothic', serif;
     font-size: 60px;
     font-weight: lighter;
 }
@@ -519,7 +525,7 @@ h1.title strong {
     font-weight: normal;
 }
 h1.hs1 {
-    font-family: "Parisienne";
+    font-family: 'SDGothic', serif;
     font-size: 96px;
     display: inline-block;
     -webkit-transform: rotate(-5deg);
@@ -528,7 +534,7 @@ h1.hs1 {
     transform: rotate(-5deg);
 }
 h1.hs2 {
-    font-family: "Parisienne";
+    font-family: 'SDGothic', serif;
     font-size: 72px;
     display: inline-block;
     font-weight: lighter;
@@ -557,7 +563,7 @@ h2.name-s1 span {
 }
 h2.hw {
     display: block;
-    font-family: "Parisienne";
+    font-family: 'SDGothic', serif;
     font-size: 48px;
     text-transform: none;
     font-weight: lighter;
@@ -601,7 +607,7 @@ h2.hs1 span {
     font-size: 48px;
     position: relative;
     top: 10px;
-    font-family: "Miama";
+    font-family: 'SDGothic', serif;
     margin: 0 15px 0 10px;
     font-weight: normal;
 }
@@ -2759,7 +2765,7 @@ i.font60 {
     padding: 20px;
     margin: 10px;
     border: solid 1px #888;
-    background: #FDFBF8;
+    background: $white;
     border-radius: 0;
     margin-bottom: 25px;
     transition: .7s;
@@ -3050,7 +3056,7 @@ i.font60 {
     color: #ffffff;
 }
 .nft_pic_title {
-    font-family: 'Bungee', cursive; 
+    font-family: 'SDGothic', serif;
     display: block;
     font-weight: bold;
 }
@@ -3494,7 +3500,7 @@ img.img-rounded{
     padding: 20px 0;
     color: #a2a2a2;
     border: solid 1px #888;
-    background: #FDFBF8;
+    background: $white;
     display: block;
     border-radius: 0;
     box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.09);
@@ -3521,7 +3527,7 @@ img.img-rounded{
       margin: 0 auto 15px;
     }
     h4{
-      font-family: "Roboto Slab", Helvetica, Arial, sans-serif;
+      font-family: 'SDGothic', serif;
       font-size: 14px;
       margin-bottom: 0;
     }

@@ -55,17 +55,17 @@ const Header= function() {
               <div className='navbar-title navbar-item'>
                 <NavLink to="/">
                   <img
-                    src="./img/logo-retro.png"
+                    src="./img/waht-red.png"
                     className="img-fluid d-block"
                     alt="#"
                   />
                   <img
-                    src="./img/logo-retro.png"
+                    src="./img/waht-red.png"
                     className="img-fluid d-3"
                     alt="#"
                   />
                   <img
-                    src="./img/logo-retro.png"
+                    src="./img/waht-red.png"
                     className="img-fluid d-none"
                     alt="#"
                   />
