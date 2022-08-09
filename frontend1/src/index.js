@@ -6,8 +6,8 @@ import '../node_modules/elegant-icons/style.css';
 import '../node_modules/et-line/style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.js';
-import './assets/style.scss?v=1634201665581';
-import './assets/custom.scss?v=1634201665581';
+import './assets/style.scss?v=1634201665582';
+import './assets/custom.scss?v=1634201665582';
 import App from './components/App';
 import {configureStore} from "@reduxjs/toolkit" 
 import { Provider } from 'react-redux';
