@@ -2,6 +2,7 @@ package com.thru.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thru.model.NFT;
+import com.thru.model.NFTProject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -14,6 +15,11 @@ import java.util.Map;
 
 @Service
 public class OpenseaNFTService implements NFTService{
+
+    @Override
+    public Map<String, NFTProject> getNftProject(String walletAddress){
+        return null;
+    }
 
     @Override
     public List<NFT> getNft(String walletAddress) {

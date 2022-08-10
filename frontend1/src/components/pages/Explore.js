@@ -1,6 +1,5 @@
 import React from 'react';
 import ColumnNew from '../components/ColumnNew';
-import Footer from '../components/footer';
 import { useSelector } from 'react-redux';
 import { Redirect } from '@reach/router';
 
@@ -26,7 +25,6 @@ const Explore= () => {
         <section className='container'>
           <ColumnNew/>
         </section>
-        <Footer />
       </div>
       :<Redirect noThrow={true} to="/"/>
     }

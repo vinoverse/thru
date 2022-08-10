@@ -3,10 +3,7 @@ package com.thru.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thru.mapper.EventMapper;
 import com.thru.mapper.ParticipationMapper;
-import com.thru.model.Event;
-import com.thru.model.NFT;
-import com.thru.model.Participation;
-import com.thru.model.User;
+import com.thru.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,5 +75,33 @@ public class EventService {
         } catch (Exception e) {}
 
         return eventMap;
+    }
+
+    @Transactional(readOnly = false)
+    public String addUserEvent(UserEvent event, String walletAddress) {
+        String resultMessage = "";
+
+        try {
+            event.setWalletAddress(walletAddress);
+            eventMapper.insertUserEvent(event);
+            resultMessage = "success";
+        } catch (Exception e) {
+            resultMessage = "error";
+        }
+
+        return resultMessage;
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserEvent> getUserEvent(String walletAddress) {
+        List<UserEvent> events = null;
+
+        try {
+            events = eventMapper.selectUserEventByWalletAddress(walletAddress);
+        } catch (Exception e) {
+            events = null;
+        }
+
+        return events;
     }
 }

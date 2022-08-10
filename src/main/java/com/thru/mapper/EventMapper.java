@@ -2,6 +2,7 @@ package com.thru.mapper;
 
 import com.thru.model.Event;
 import com.thru.model.User;
+import com.thru.model.UserEvent;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -33,4 +34,10 @@ public interface EventMapper {
 
     @Insert("INSERT INTO Event(user_id, title, contract_address, info) VALUES(#{userId}, #{title}, #{contractAddress}, #{info})")
     int insert(Event event);
+
+    @Insert("INSERT INTO UserEvent(wallet_address, title, contract_address, info) VALUES(#{walletAddress}, #{title}, #{contractAddress}, #{info})")
+    int insertUserEvent(UserEvent event);
+
+    @Select("SELECT * FROM UserEvent WHERE wallet_address=#{walletAddress}")
+    List<UserEvent> selectUserEventByWalletAddress(String walletAddress);
 }

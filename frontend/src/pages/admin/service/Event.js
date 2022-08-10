@@ -6,6 +6,12 @@ const Event = (props) => {
     const [updateInputs, setUpdateInputs] = useState({
         eventName: "",
         contractAddress: "",
+        infoTitle1: "",
+        infoTitle2: "",
+        infoTitle3: "",
+        infoValue1: "",
+        infoValue2: "",
+        infoValue3: ""
     });
 
     const { eventName, contractAddress, infoTitle1, infoTitle2, infoTitle3, infoValue1, infoValue2, infoValue3 } = updateInputs;

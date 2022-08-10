@@ -1,6 +1,5 @@
 import React from 'react';
 import WalletItem from '../components/WalletItem';
-import Footer from '../components/footer';
 
 const Wallet = (props) => {
   return (
@@ -19,7 +18,6 @@ const Wallet = (props) => {
       <section className='container'>
         <WalletItem {...props} />
       </section>
-      <Footer />
     </div>
   );
 };
