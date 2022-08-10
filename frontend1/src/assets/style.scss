@@ -345,6 +345,7 @@ h6,
     font-weight: 700;
     color: #0d0c22;
 }
+
 h1, .h1 {
     font-size: 50px;
     margin-bottom: 20px;
@@ -468,6 +469,7 @@ h4.teaser {
     font-weight: 300;
     font-size: 22px;
 }
+
 .subtitle.s2 {
     font-size: 20px;
     font-weight: 500;
@@ -1411,7 +1413,7 @@ p.lead {
     content: unset;
   }
   .mainbreadcumb{
-    padding: 130px 0 110px;
+    padding: 65px 0 55px;
     h1{
       margin-bottom: 0;
       color: $color;
