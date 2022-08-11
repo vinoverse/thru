@@ -97,7 +97,9 @@ const Eventinput = (props) => {
     }
       
     return (
-        <div>
+        <>
+        {account
+        ?<div>
             {!status
             ?<>
             <section className='jumbotron breadcumb no-bg'>
@@ -153,6 +155,9 @@ const Eventinput = (props) => {
             :<Redirect noThrow={true} to="/myevents"/>
             }
         </div>
+        :<Redirect noThrow={true} to="/"/>
+        }
+        </>
     );
 };
 

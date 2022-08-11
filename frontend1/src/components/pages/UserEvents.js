@@ -1,4 +1,4 @@
-import { Link } from '@reach/router';
+import { Link, Redirect } from '@reach/router';
 import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import UserEventItem from '../components/UserEventItem';
@@ -18,6 +18,9 @@ const UserEvents = () => {
     }, []);
 
     return (
+        <>
+        {account
+        ?
         <div>
             <section className='jumbotron breadcumb no-bg'>
                 <div className='mainbreadcumb'>
@@ -46,6 +49,9 @@ const UserEvents = () => {
                 </div>
             </section>
         </div>
+        :<Redirect noThrow={true} to="/"/>
+        }
+        </>
     );
 };
 
