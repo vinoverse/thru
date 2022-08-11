@@ -38,12 +38,12 @@ const ColumnItem = (props) => {
                         <span>
                             <h4>{name}</h4>
                         </span>
-                        {eventList 
-                        ? <div className="nft__item_like">
-                            <i className="fa fa-ticket"></i><span>{eventList.length}</span>
+                        <div className="nft__item_like">
+                            {eventList 
+                            ?<><i className="fa fa-ticket"></i><span>{eventList.length}</span></>
+                            :<><i className="fa"></i><span></span></>
+                            }
                         </div>
-                        :<div></div>
-                        }
                     </div> 
                 </div>
             </div>
