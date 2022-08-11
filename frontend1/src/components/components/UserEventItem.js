@@ -15,11 +15,11 @@ const UserEventItem = (props) => {
                 <h4>{event.title}</h4>
                 {"infoTitle2" in info
                 ?
-                <>{info.infoTitle2} <span className='color'>{info.infoValue2}</span><br /></>
+                <>{info.infoTitle2} : <span className='color'>{info.infoValue2}</span><br /></>
                 :""}
                 {"infoTitle3" in info
                 ?
-                <>{info.infoTitle3} <span className='color'>{info.infoValue3}</span></>
+                <>{info.infoTitle3} : <span className='color'>{info.infoValue3}</span></>
                 :""}
                 
                 <span className="act_list_date">{info.infoValue1}</span>

@@ -22,7 +22,7 @@ export const TicketModal = (props) => {
                         <div className="Line-2">
                             <span className="NFT">NFT</span>
                             {imgurl.search("mp4") > -1
-                            ? <video src={imgurl} className="Rectangle-4" autoplay="true"/>
+                            ? <video src={imgurl} className="Rectangle-4"/>
                             : <img src={imgurl} className="Rectangle-4"/> 
                             }
                         </div>

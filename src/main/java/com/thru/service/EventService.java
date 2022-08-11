@@ -49,8 +49,8 @@ public class EventService {
     }
 
     @Transactional(readOnly = true)
-    public Map<String, List<Event>> getEventsByNfts(List<NFT> nftList) {
-        Map<String, List<Event>> eventMap = new HashMap<>();
+    public Map<String, List<EventInterface>> getEventsByNfts(List<NFT> nftList) {
+        Map<String, List<EventInterface>> eventMap = new HashMap<>();
 
         try {
             List<String> contractAddressList = new ArrayList<>();
@@ -65,7 +65,20 @@ public class EventService {
                     String contractAddress = eventItem.getContractAddress();
 
                     if (!eventMap.containsKey(contractAddress)) {
-                        List<Event> imsiEventList = new ArrayList<>();
+                        List<EventInterface> imsiEventList = new ArrayList<>();
+                        eventMap.put(contractAddress, imsiEventList);
+                    }
+
+                    eventMap.get(contractAddress).add(eventItem);
+                }
+
+                List<UserEvent> userEvents = eventMapper.selectUserEventByContractAddressList(contractAddressList);
+
+                for (UserEvent eventItem : userEvents) {
+                    String contractAddress = eventItem.getContractAddress();
+
+                    if (!eventMap.containsKey(contractAddress)) {
+                        List<EventInterface> imsiEventList = new ArrayList<>();
                         eventMap.put(contractAddress, imsiEventList);
                     }
 

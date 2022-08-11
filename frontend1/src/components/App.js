@@ -3,14 +3,14 @@ import { Router, Location } from '@reach/router';
 import ScrollToTopBtn from './menu/ScrollToTop';
 import Header from './menu/header';
 import Footer from './components/footer';
-import Explore from './pages/Explore';
 import Wallet from './pages/Wallet';
-import Activity from './pages/Activity';
 
 import { createGlobalStyle } from 'styled-components';
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 import Eventinput from './pages/Eventinput';
+import UserEvents from './pages/UserEvents';
+import Mynft from './pages/Mynft';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -53,8 +53,8 @@ const App = () => {
           <PosedRouter>
             <ScrollTop path="/">
               <Wallet path="/" />
-              <Explore path="/explore" />
-              <Activity path="/myevents" />
+              <Mynft path="/mynft" />
+              <UserEvents path="/myevents" />
               <Eventinput path="/eventInput" />
             </ScrollTop>
           </PosedRouter>

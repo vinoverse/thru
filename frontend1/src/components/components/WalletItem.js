@@ -44,7 +44,7 @@ const WalletItem= (props) => {
                 </span>
             </div>
         </div>
-        :<Redirect noThrow={true} to="/explore"/>}
+        :<Redirect noThrow={true} to="/mynft"/>}
         </>
     )
   

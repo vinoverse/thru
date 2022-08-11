@@ -1,10 +1,7 @@
 package com.thru.controller;
 
 import com.thru.config.auth.PrincipalDetails;
-import com.thru.model.Event;
-import com.thru.model.NFT;
-import com.thru.model.NFTProject;
-import com.thru.model.UserEvent;
+import com.thru.model.*;
 import com.thru.service.EventService;
 import com.thru.service.NFTService;
 import org.apache.commons.lang3.StringUtils;
@@ -32,7 +29,7 @@ public class NFTController {
         Map<String, Object> returnMap = new HashMap<>();
         List<NFT> nftList = nftService.getNft(walletAddress);
 
-        Map<String, List<Event>> eventMap = eventService.getEventsByNfts(nftList);
+        Map<String, List<EventInterface>> eventMap = eventService.getEventsByNfts(nftList);
 
         returnMap.put("nftList", nftList);
         returnMap.put("eventMap", eventMap);

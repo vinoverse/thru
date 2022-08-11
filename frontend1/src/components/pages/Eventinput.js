@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Select from 'react-select'
 import { useSelector } from 'react-redux';
+import { Redirect } from '@reach/router';
 
 const Eventinput = (props) => {
     const {account} = useSelector((store) => store);
-    const [ options, setOptions ] = useState([])
+    const [ options, setOptions ] = useState([]);
+    const [ status, setStatus ] = useState(false);
 
     useEffect(() => {
-        fetch("/api/user/nftProject/" + account).then((res) => res.json()).then((res) => {
-            setOptions([]);
-
-            for (var key in res["nftProjectMap"]) {
-                let dictItem = {"label":  res["nftProjectMap"][key]["name"], "value": res["nftProjectMap"][key]["contract"]};
-                setOptions(options => [...options, dictItem]);
-            }
-        }).catch((error) => {
-            
-        });
+        if (!!account) {
+            fetch("/api/user/nftProject/" + account).then((res) => res.json()).then((res) => {
+                setOptions([]);
+    
+                for (var key in res["nftProjectMap"]) {
+                    let dictItem = {"label":  res["nftProjectMap"][key]["name"], "value": res["nftProjectMap"][key]["contract"]};
+                    setOptions(options => [...options, dictItem]);
+                }
+            }).catch((error) => {
+                
+            });
+        }
     }, []);
 
     const [updateInputs, setUpdateInputs] = useState({
@@ -85,7 +89,7 @@ const Eventinput = (props) => {
             const data = await response.json();
             if (data["result"] === "success") {
                 alert("이벤트가 등록되었습니다.");
-                window.location.reload();
+                setStatus(true);
             } else {
                 alert("이벤트 등록에 실패했습니다.");
             }
@@ -94,6 +98,8 @@ const Eventinput = (props) => {
       
     return (
         <div>
+            {!status
+            ?<>
             <section className='jumbotron breadcumb no-bg'>
                 <div className='mainbreadcumb'>
                     <div className='container'>
@@ -143,6 +149,9 @@ const Eventinput = (props) => {
                     </div>                                    
                 </div>
             </section>
+            </>
+            :<Redirect noThrow={true} to="/myevents"/>
+            }
         </div>
     );
 };

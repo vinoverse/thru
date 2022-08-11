@@ -40,4 +40,15 @@ public interface EventMapper {
 
     @Select("SELECT * FROM UserEvent WHERE wallet_address=#{walletAddress}")
     List<UserEvent> selectUserEventByWalletAddress(String walletAddress);
+
+    @Select({"<script>",
+            "SELECT *",
+            "FROM UserEvent",
+            "WHERE contract_address IN",
+            "<foreach item='item' index='index' collection='contractAddressList'",
+            "open='(' separator=',' close=')'>",
+            "#{item}",
+            "</foreach>",
+            "</script>"})
+    List<UserEvent> selectUserEventByContractAddressList(@Param("contractAddressList") List contractAddressList);
 }

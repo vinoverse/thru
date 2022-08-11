@@ -3,7 +3,7 @@ package com.thru.model;
 import lombok.Data;
 
 @Data
-public class UserEvent {
+public class UserEvent implements EventInterface {
     private long id;
     private String walletAddress;
     private String title;

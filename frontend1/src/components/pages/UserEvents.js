@@ -3,17 +3,18 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import UserEventItem from '../components/UserEventItem';
 
-const Activity = () => {
+const UserEvents = () => {
     const {account} = useSelector((store) => store);
     const [eventList, setEventList] = useState([]);
 
     useEffect(() => {
-        fetch("/api/user/event/" + account).then((res) => res.json()).then((res) => {
-            console.log(res["eventList"])
-            setEventList(res["eventList"]);
-        }).catch((error) => {
-            
-        });
+        if (!!account) {
+            fetch("/api/user/event/" + account).then((res) => res.json()).then((res) => {
+                setEventList(res["eventList"]);
+            }).catch((error) => {
+                setEventList([]);
+            });
+        }
     }, []);
 
     return (
@@ -36,7 +37,7 @@ const Activity = () => {
                 </div>
                 <div className='row'>
                     <div className="col-md-14">
-                        <ul className="activity-list">
+                        <ul className="activity-list-text">
                         {eventList.map((event, index) => (
                            <UserEventItem key={index} event={event} />
                         ))}
@@ -48,4 +49,4 @@ const Activity = () => {
     );
 };
 
-export default Activity;
+export default UserEvents;
