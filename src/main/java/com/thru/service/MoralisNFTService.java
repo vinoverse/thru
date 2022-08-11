@@ -20,10 +20,10 @@ import java.util.Map;
 @Service
 public class MoralisNFTService implements NFTService{
 
-    @CacheEvict(value = "nft", key = "#walletAddress")
+    //@CacheEvict(value = "nft", key = "#walletAddress")
     private void deleteCache(String walletAddress) {}
 
-    @Cacheable(value = "nft", key = "#walletAddress")
+    //@Cacheable(value = "nft", key = "#walletAddress")
     @Override
     public List<NFT> getNft(String walletAddress) {
         try {
