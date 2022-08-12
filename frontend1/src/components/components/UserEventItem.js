@@ -1,17 +1,21 @@
 import React from 'react';
 
 const UserEventItem = (props) => {
-    const {event} = props;
+    const {event, setMenuModalShow, setEvent} = props;
     
     let info = null;
     if (event.info) {
         info = JSON.parse(event.info);
     }
 
+    const clickItem = () => {
+        setMenuModalShow(true);
+        setEvent(event);
+    }
 
     return (
         <li>
-            <div className="act_list_text_only">
+            <div className="act_list_text_only" onClick={clickItem}>
                 <h4>{event.title}</h4>
                 {"infoTitle2" in info
                 ?

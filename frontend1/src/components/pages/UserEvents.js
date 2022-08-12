@@ -2,10 +2,16 @@ import { Link, Redirect } from '@reach/router';
 import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import UserEventItem from '../components/UserEventItem';
+import { UserEventMenuModal } from '../components/modal/UserEventMenuModal';
+import EditEvent from './EditEvent';
 
 const UserEvents = () => {
     const {account} = useSelector((store) => store);
     const [eventList, setEventList] = useState([]);
+    const [event, setEvent] = useState({});
+
+    const [ menuModalShow, setMenuModalShow ] = useState(false);
+    const [ updateModalShow, setUpdateModalShow ] = useState(false);
 
     useEffect(() => {
         if (!!account) {
@@ -42,12 +48,14 @@ const UserEvents = () => {
                     <div className="col-md-14">
                         <ul className="activity-list-text">
                         {eventList.map((event, index) => (
-                           <UserEventItem key={index} event={event} />
+                           <UserEventItem key={index} event={event} setMenuModalShow={setMenuModalShow} setEvent={setEvent} />
                         ))}
                         </ul>
                     </div>
                 </div>
             </section>
+            <UserEventMenuModal show={menuModalShow} onHide={() => setMenuModalShow(false)} event={event} setMenuModalShow={setMenuModalShow} setUpdateModalShow={setUpdateModalShow}/>
+            <EditEvent show={updateModalShow} onHide={() => setUpdateModalShow(false)} event={event}/>
         </div>
         :<Redirect noThrow={true} to="/"/>
         }

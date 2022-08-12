@@ -117,4 +117,19 @@ public class EventService {
 
         return events;
     }
+
+    @Transactional(readOnly = false)
+    public String deleteUserEvent(UserEvent event, String walletAddress) {
+        String resultMessage = "";
+
+        try {
+            event.setWalletAddress(walletAddress);
+            eventMapper.deleteUserEvent(event);
+            resultMessage = "success";
+        } catch (Exception e) {
+            resultMessage = "error";
+        }
+
+        return resultMessage;
+    }
 }

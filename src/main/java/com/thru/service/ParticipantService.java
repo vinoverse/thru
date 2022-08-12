@@ -1,13 +1,10 @@
 package com.thru.service;
 
 import com.thru.mapper.EventMapper;
+import com.thru.mapper.ParticipationForUserMapper;
 import com.thru.mapper.ParticipationMapper;
 import com.thru.mapper.ParticipationimsiMapper;
-import com.thru.model.Event;
-import com.thru.model.Participation;
-import com.thru.model.Participationimsi;
-import com.thru.model.User;
-import org.apache.commons.lang3.StringUtils;
+import com.thru.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -23,7 +20,8 @@ public class ParticipantService {
 
     @Autowired
     private ParticipationMapper participationMapper;
-
+    @Autowired
+    private ParticipationForUserMapper participationForUserMapper;
     @Autowired
     private ParticipationimsiMapper participationimsiMapper;
 
@@ -33,6 +31,7 @@ public class ParticipantService {
 
         if (contractAddress != null) {
             Event event = eventMapper.selectByContractAddressAndUserId(eventId, contractAddress, user.getId());
+
             if (event != null) {
                 Long initEventId = event.getId();
 

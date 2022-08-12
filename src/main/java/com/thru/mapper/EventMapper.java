@@ -3,10 +3,7 @@ package com.thru.mapper;
 import com.thru.model.Event;
 import com.thru.model.User;
 import com.thru.model.UserEvent;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -51,4 +48,10 @@ public interface EventMapper {
             "</foreach>",
             "</script>"})
     List<UserEvent> selectUserEventByContractAddressList(@Param("contractAddressList") List contractAddressList);
+
+    @Select("SELECT * FROM UserEvent WHERE id=#{id} AND contract_address=#{contractAddress} AND wallet_address=#{walletAddress}")
+    UserEvent selectUserEventByContractAddressAndWalletAddress(@Param("id") Long id, @Param("contractAddress") String contractAddress, @Param("walletAddress") String walletAddress);
+
+    @Delete("DELETE FROM UserEvent WHERE id=#{id} AND wallet_address=#{walletAddress}")
+    void deleteUserEvent(UserEvent event);
 }

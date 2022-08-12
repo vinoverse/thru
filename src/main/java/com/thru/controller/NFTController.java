@@ -45,6 +45,19 @@ public class NFTController {
         return returnMap;
     }
 
+    @DeleteMapping("/event")
+    public Map<String, String> removeEvent(@RequestHeader Map<String, Object> requestHeader, @RequestBody UserEvent event) {
+        Map<String, String> resultMap = new HashMap<>();
+
+        if (requestHeader.containsKey("walletaddress")) {
+            String walletAddress = (String) requestHeader.get("walletaddress");
+            String resultMessage = eventService.deleteUserEvent(event, walletAddress);
+            resultMap.put("result", resultMessage);
+        }
+
+        return resultMap;
+    }
+
     @PostMapping("/event")
     public Map<String, String> addEvent(@RequestHeader Map<String, Object> requestHeader, @RequestBody UserEvent event) {
         Map<String, String> resultMap = new HashMap<>();
