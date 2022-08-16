@@ -11,7 +11,7 @@ import { Web3Provider } from '@ethersproject/providers';
 import Eventinput from './pages/Eventinput';
 import UserEvents from './pages/UserEvents';
 import Mynft from './pages/Mynft';
-import EditEvent from './pages/EditEvent';
+import EditEventModal from './components/modal/EditEventModal';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -57,7 +57,7 @@ const App = () => {
               <Mynft path="/mynft" />
               <UserEvents path="/myevents" />
               <Eventinput path="/eventInput" />
-              <EditEvent path="/editEvent" />
+              <EditEventModal path="/editEvent" />
             </ScrollTop>
           </PosedRouter>
           <Footer />

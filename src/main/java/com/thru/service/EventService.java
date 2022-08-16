@@ -132,4 +132,18 @@ public class EventService {
 
         return resultMessage;
     }
+
+    public String editUserEvent(UserEvent event, String walletAddress) {
+        String resultMessage = "";
+
+        try {
+            event.setWalletAddress(walletAddress);
+            eventMapper.updateUserEvent(event);
+            resultMessage = "success";
+        } catch (Exception e) {
+            resultMessage = "error";
+        }
+
+        return resultMessage;
+    }
 }

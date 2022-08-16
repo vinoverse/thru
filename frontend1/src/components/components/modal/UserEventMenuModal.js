@@ -4,9 +4,14 @@ import { useSelector } from 'react-redux';
 import { Redirect } from '@reach/router';
 
 export const UserEventMenuModal = (props) => {
-    const {event, setMenuModalShow, setUpdateModalShow} = props;
+    const {event, setMenuModalShow, setUpdateModalShow, setScanModalShow} = props;
     const {account} = useSelector((store) => store);
     const [status, setStatus] = useState(0);
+
+    const scanEvent = () => {
+        setMenuModalShow(false);
+        setScanModalShow(true);
+    }
 
     const modifyEvent = () => {
         setMenuModalShow(false);
@@ -55,7 +60,7 @@ export const UserEventMenuModal = (props) => {
             <Modal.Body>
                 <ListGroup as="ol">
                     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
+                        <div className="ms-2 me-auto" onClick={scanEvent}>
                             <div className="fw-bold">참석 체크</div>
                         </div>
                     </ListGroup.Item>

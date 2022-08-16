@@ -76,4 +76,34 @@ public class ParticipantService {
 
         return resultMessage;
     }
+
+    public String registeParticipationForUserEvent(String contractAddress, Long tokenId, Long eventId, String walletAddress) {
+        String resultMessage = "등록된 행사가 아닙니다.";
+
+        if (contractAddress != null) {
+            UserEvent userEvent = eventMapper.selectUserEventByContractAddressAndWalletAddress(eventId, contractAddress, walletAddress);
+
+            if (userEvent != null) {
+                Long initEventId = userEvent.getId();
+
+                if (tokenId != null) {
+                    Participation participation = participationForUserMapper.selectByEventIdAndTokenId(initEventId, tokenId);
+                    if (participation == null) {
+                        Participation newParticipation = new Participation();
+                        newParticipation.setEventId(initEventId);
+                        newParticipation.setTokenId(tokenId);
+                        newParticipation.setCreateDate(ZonedDateTime.now(ZoneId.of("Asia/Seoul")));
+
+                        participationForUserMapper.insert(newParticipation);
+
+                        resultMessage = "참여해주셔서 감사합니다.";
+                    } else {
+                        resultMessage = "이미 참여했습니다. 참여 시간 : " + participation.getCreateDate();
+                    }
+                }
+            }
+        }
+
+        return resultMessage;
+    }
 }

@@ -54,4 +54,7 @@ public interface EventMapper {
 
     @Delete("DELETE FROM UserEvent WHERE id=#{id} AND wallet_address=#{walletAddress}")
     void deleteUserEvent(UserEvent event);
+
+    @Update("UPDATE UserEvent SET wallet_address=#{walletAddress}, title=#{title}, contract_address=#{contractAddress}, info=#{info} WHERE id=#{id}")
+    int updateUserEvent(UserEvent event);
 }

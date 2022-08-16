@@ -61,7 +61,7 @@ const Eventinput = (props) => {
             "title": name,
             "contractAddress": contractAddress,
             "info": JSON.stringify({
-                "infoTitle1": "schedule",
+                "infoTitle1": "Schedule",
                 "infoTitle2": infoTitle2,
                 "infoTitle3": infoTitle3,
                 "infoValue1": datetime,

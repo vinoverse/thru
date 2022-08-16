@@ -3,7 +3,8 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import UserEventItem from '../components/UserEventItem';
 import { UserEventMenuModal } from '../components/modal/UserEventMenuModal';
-import EditEvent from './EditEvent';
+import EditEventModal from '../components/modal/EditEventModal';
+import ScanUserTicketModal from '../components/modal/ScanUserTicketModal';
 
 const UserEvents = () => {
     const {account} = useSelector((store) => store);
@@ -12,6 +13,7 @@ const UserEvents = () => {
 
     const [ menuModalShow, setMenuModalShow ] = useState(false);
     const [ updateModalShow, setUpdateModalShow ] = useState(false);
+    const [ scanModalShow, setScanModalShow ] = useState(false);
 
     useEffect(() => {
         if (!!account) {
@@ -54,8 +56,9 @@ const UserEvents = () => {
                     </div>
                 </div>
             </section>
-            <UserEventMenuModal show={menuModalShow} onHide={() => setMenuModalShow(false)} event={event} setMenuModalShow={setMenuModalShow} setUpdateModalShow={setUpdateModalShow}/>
-            <EditEvent show={updateModalShow} onHide={() => setUpdateModalShow(false)} event={event}/>
+            <UserEventMenuModal show={menuModalShow} onHide={() => setMenuModalShow(false)} event={event} setMenuModalShow={setMenuModalShow} setUpdateModalShow={setUpdateModalShow} setScanModalShow={setScanModalShow}/>
+            <EditEventModal show={updateModalShow} onHide={() => setUpdateModalShow(false)} event={event}/>
+            <ScanUserTicketModal show={scanModalShow} onHide={() => setScanModalShow(false)} event={event} />
         </div>
         :<Redirect noThrow={true} to="/"/>
         }
