@@ -57,7 +57,7 @@ const UserEvents = () => {
                 </div>
             </section>
             <UserEventMenuModal show={menuModalShow} onHide={() => setMenuModalShow(false)} event={event} setMenuModalShow={setMenuModalShow} setUpdateModalShow={setUpdateModalShow} setScanModalShow={setScanModalShow}/>
-            <EditEventModal show={updateModalShow} onHide={() => setUpdateModalShow(false)} event={event}/>
+            <EditEventModal show={updateModalShow} onHide={() => setUpdateModalShow(false)} event={event} setUpdateModalShow={setUpdateModalShow}/>
             <ScanUserTicketModal show={scanModalShow} onHide={() => setScanModalShow(false)} event={event} />
         </div>
         :<Redirect noThrow={true} to="/"/>

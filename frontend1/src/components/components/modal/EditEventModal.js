@@ -9,6 +9,8 @@ const EditEventModal = (props) => {
     const [ options, setOptions ] = useState([]);
     const {event} = props;
     const [status, setStatus] = useState(true);
+
+    const {setUpdateModalShow} = props;
     
     let info = null;    
     if ("info" in event) {
@@ -77,6 +79,10 @@ const EditEventModal = (props) => {
             ["contractAddress"]: value
         });
     } 
+
+    const closeModal = () => {
+        setUpdateModalShow(false);
+    }
 
     const editEvent = async () => {
         if (!name || !contractAddress) {
@@ -170,7 +176,8 @@ const EditEventModal = (props) => {
                                 <input type="text" name="infoValue3" id="infoValue3" className="form-control" placeholder="info2 value" value={infoValue3} onChange={onChange} />
                                 
                                 <div className="spacer-10"></div>
-                                <input type="button" className="btn-main" value="Edit Event" onClick={editEvent}/>
+                                <input type="button" className="btn-modal" value="Edit Event" onClick={editEvent}/>
+                                <input type="button" className="btn-modal" value="Close" onClick={closeModal} />
                             </div>
                         </form>
                     </div>                                    
