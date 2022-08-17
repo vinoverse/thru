@@ -18,10 +18,25 @@ const WalletItem= (props) => {
         dispatcher(setAccount(account));
     }
 
+    const metamaskAppOpen = () => {
+        const dappUrl = "waht.app"
+        window.location.href="https://metamask.app.link/dapp/" + dappUrl;
+    }
+
     return (
         <>
         {!account?
         <div className="row">
+            {'ontouchstart' in window || 'onmsgesturechange' in window
+            ?
+            <div className="col-lg-3 mb30" onClick={metamaskAppOpen}>
+                <span className="box-url left p-3">
+                    <img src="./img/wallet/1.png" alt="" className="mb20"/>
+                    <h4>Metamask</h4>
+                    <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
+                </span>
+            </div>
+            :
             <div className="col-lg-3 mb30" onClick={() => {activate(connectors.injected);}}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
@@ -29,6 +44,8 @@ const WalletItem= (props) => {
                     <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
                 </span>
             </div>
+            }
+            
             <div className="col-lg-3 mb30" onClick={() => {activate(connectors.walletConnect)}}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/4.png" alt="" className="mb20"/>
