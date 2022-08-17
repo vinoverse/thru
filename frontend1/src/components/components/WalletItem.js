@@ -38,14 +38,14 @@ const WalletItem= (props) => {
             ?<div className="col-lg-3 mb30" onClick={() => {activate(connectors.injected);}}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
-                    <h4>Metamask {typeof window.ethereum}</h4>
+                    <h4>Metamask</h4>
                     <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
                 </span>
             </div>
             :<div className="col-lg-3 mb30" onClick={metamaskAppOpen}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
-                    <h4>Metamask {typeof window.ethereum}</h4>
+                    <h4>Metamask</h4>
                     <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
                 </span>
             </div>}
