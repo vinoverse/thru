@@ -19,7 +19,14 @@ const WalletItem= (props) => {
     }
 
     const metamaskAppOpen = () => {
-        const dappUrl = "waht.app"
+        let dappUrl = "waht.app";
+
+        const mobileType = navigator.userAgent.toLowerCase();
+        
+        if(mobileType.indexOf('android') > -1) {
+            dappUrl = "https://waht.app/";
+        } 
+    
         window.location.href="https://metamask.app.link/dapp/" + dappUrl;
     }
 
@@ -27,24 +34,21 @@ const WalletItem= (props) => {
         <>
         {!account?
         <div className="row">
-            {'ontouchstart' in window || 'onmsgesturechange' in window
-            ?
-            <div className="col-lg-3 mb30" onClick={metamaskAppOpen}>
+            {window.ethereum && window.ethereum.isMetaMask
+            ?<div className="col-lg-3 mb30" onClick={() => {activate(connectors.injected);}}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
-                    <h4>Metamask</h4>
+                    <h4>Metamask {typeof window.ethereum}</h4>
                     <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
                 </span>
             </div>
-            :
-            <div className="col-lg-3 mb30" onClick={() => {activate(connectors.injected);}}>
+            :<div className="col-lg-3 mb30" onClick={metamaskAppOpen}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
-                    <h4>Metamask</h4>
+                    <h4>Metamask {typeof window.ethereum}</h4>
                     <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
                 </span>
-            </div>
-            }
+            </div>}
             
             <div className="col-lg-3 mb30" onClick={() => {activate(connectors.walletConnect)}}>
                 <span className="box-url left p-3">
