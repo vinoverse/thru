@@ -19,15 +19,7 @@ const WalletItem= (props) => {
     }
 
     const metamaskAppOpen = () => {
-        let dappUrl = "waht.app";
-
-        const mobileType = navigator.userAgent.toLowerCase();
-        
-        if(mobileType.indexOf('android') > -1) {
-            dappUrl = "https://waht.app/";
-        } 
-    
-        window.location.href="https://metamask.app.link/dapp/" + dappUrl;
+        window.location.href="dapp://waht.app";
     }
 
     return (
