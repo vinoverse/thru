@@ -1,0 +1,57 @@
+.main-theme {
+  margin: 50px 40px 56px 40px;
+}
+
+.login {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.login .login-title {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.login .wallet-type {
+  margin-top: 10px;
+  margin-bottom:  10px;
+  height: 50px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;  
+}
+
+.login .wallet-type .wallet-img {
+  margin-left: 24px;
+  margin-right: 12px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+}
+
+#metamask {
+  background: #F9852D;
+}
+
+#coinbase {
+  background: #2463F4;  
+}
+
+#walletconnect {
+  background: #69B2FA;  
+}
+
+
+.login .wallet-type .wallet-name {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 16px;
+  display: flex;
+  color: #FFFFFF;
+}
+

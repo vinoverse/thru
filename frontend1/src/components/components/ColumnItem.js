@@ -28,7 +28,7 @@ const ColumnItem = (props) => {
                     <div className="nft__item_wrap" style={{height: `${state.height}px`}}>
                         <span>
                             {originUrl.search("mp4") > -1
-                            ? <video onLoad={onImgLoad} src={originUrl} className="lazy nft__item_preview" alt="" width="100%" autoplay="true"/>
+                            ? <video onLoad={onImgLoad} src={originUrl} className="lazy nft__item_preview" alt="" width="100%" autoplay="true" loop="true" muted="true" playsinline="true"/>
                             : <img onLoad={onImgLoad} src={originUrl} className="lazy nft__item_preview" alt=""/>
                             }
                             
@@ -38,12 +38,12 @@ const ColumnItem = (props) => {
                         <span>
                             <h4>{name}</h4>
                         </span>
-                        {eventList 
-                        ? <div className="nft__item_like">
-                            <i className="fa fa-ticket"></i><span>{eventList.length}</span>
+                        <div className="nft__item_like">
+                            {eventList 
+                            ?<><i className="fa fa-ticket"></i><span>{eventList.length}</span></>
+                            :<><i className="fa"></i><span></span></>
+                            }
                         </div>
-                        :<div></div>
-                        }
                     </div> 
                 </div>
             </div>

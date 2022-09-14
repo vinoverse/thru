@@ -18,17 +18,30 @@ const WalletItem= (props) => {
         dispatcher(setAccount(account));
     }
 
+    const metamaskAppOpen = () => {
+        window.location.href="dapp://waht.app";
+    }
+
     return (
         <>
         {!account?
         <div className="row">
-            <div className="col-lg-3 mb30" onClick={() => {activate(connectors.injected);}}>
+            {window.ethereum && window.ethereum.isMetaMask
+            ?<div className="col-lg-3 mb30" onClick={() => {activate(connectors.injected);}}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
                     <h4>Metamask</h4>
                     <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
                 </span>
             </div>
+            :<div className="col-lg-3 mb30" onClick={metamaskAppOpen}>
+                <span className="box-url left p-3">
+                    <img src="./img/wallet/1.png" alt="" className="mb20"/>
+                    <h4>Metamask</h4>
+                    <p>Start exploring blockchain applications in seconds.  Trusted by over 1 million users worldwide.</p>
+                </span>
+            </div>}
+            
             <div className="col-lg-3 mb30" onClick={() => {activate(connectors.walletConnect)}}>
                 <span className="box-url left p-3">
                     <img src="./img/wallet/4.png" alt="" className="mb20"/>
@@ -44,7 +57,7 @@ const WalletItem= (props) => {
                 </span>
             </div>
         </div>
-        :<Redirect noThrow={true} to="/explore"/>}
+        :<Redirect noThrow={true} to="/mynft"/>}
         </>
     )
   

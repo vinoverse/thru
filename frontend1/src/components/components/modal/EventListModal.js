@@ -16,7 +16,7 @@ export const EventListModal = (props) => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
         >
-            <Modal.Title>Events</Modal.Title>
+            <Modal.Title className="event-title">Events</Modal.Title>
             <Modal.Body>
                 <ListGroup as="ol">
                 {eventlist.map((event, index) => (

@@ -2,12 +2,16 @@ import React from 'react';
 import { Router, Location } from '@reach/router';
 import ScrollToTopBtn from './menu/ScrollToTop';
 import Header from './menu/header';
-import Explore from './pages/Explore';
+import Footer from './components/footer';
 import Wallet from './pages/Wallet';
 
 import { createGlobalStyle } from 'styled-components';
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
+import Eventinput from './pages/Eventinput';
+import UserEvents from './pages/UserEvents';
+import Mynft from './pages/Mynft';
+import EditEventModal from './components/modal/EditEventModal';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -50,9 +54,13 @@ const App = () => {
           <PosedRouter>
             <ScrollTop path="/">
               <Wallet path="/" />
-              <Explore path="/explore" />
+              <Mynft path="/mynft" />
+              <UserEvents path="/myevents" />
+              <Eventinput path="/eventInput" />
+              <EditEventModal path="/editEvent" />
             </ScrollTop>
           </PosedRouter>
+          <Footer />
         </Web3ReactProvider>
         <ScrollToTopBtn />
       </div>

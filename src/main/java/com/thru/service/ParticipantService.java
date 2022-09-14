@@ -1,13 +1,10 @@
 package com.thru.service;
 
 import com.thru.mapper.EventMapper;
+import com.thru.mapper.ParticipationForUserMapper;
 import com.thru.mapper.ParticipationMapper;
 import com.thru.mapper.ParticipationimsiMapper;
-import com.thru.model.Event;
-import com.thru.model.Participation;
-import com.thru.model.Participationimsi;
-import com.thru.model.User;
-import org.apache.commons.lang3.StringUtils;
+import com.thru.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -23,7 +20,8 @@ public class ParticipantService {
 
     @Autowired
     private ParticipationMapper participationMapper;
-
+    @Autowired
+    private ParticipationForUserMapper participationForUserMapper;
     @Autowired
     private ParticipationimsiMapper participationimsiMapper;
 
@@ -33,6 +31,7 @@ public class ParticipantService {
 
         if (contractAddress != null) {
             Event event = eventMapper.selectByContractAddressAndUserId(eventId, contractAddress, user.getId());
+
             if (event != null) {
                 Long initEventId = event.getId();
 
@@ -70,6 +69,36 @@ public class ParticipantService {
                         resultMessage = "참여해주셔서 감사합니다.";
                     } else {
                         resultMessage = "이미 참여했습니다. 참여 시간 : " + participationimsi.getCreateDate();
+                    }
+                }
+            }
+        }
+
+        return resultMessage;
+    }
+
+    public String registeParticipationForUserEvent(String contractAddress, Long tokenId, Long eventId, String walletAddress) {
+        String resultMessage = "등록된 행사가 아닙니다.";
+
+        if (contractAddress != null) {
+            UserEvent userEvent = eventMapper.selectUserEventByContractAddressAndWalletAddress(eventId, contractAddress, walletAddress);
+
+            if (userEvent != null) {
+                Long initEventId = userEvent.getId();
+
+                if (tokenId != null) {
+                    Participation participation = participationForUserMapper.selectByEventIdAndTokenId(initEventId, tokenId);
+                    if (participation == null) {
+                        Participation newParticipation = new Participation();
+                        newParticipation.setEventId(initEventId);
+                        newParticipation.setTokenId(tokenId);
+                        newParticipation.setCreateDate(ZonedDateTime.now(ZoneId.of("Asia/Seoul")));
+
+                        participationForUserMapper.insert(newParticipation);
+
+                        resultMessage = "참여해주셔서 감사합니다.";
+                    } else {
+                        resultMessage = "이미 참여했습니다. 참여 시간 : " + participation.getCreateDate();
                     }
                 }
             }

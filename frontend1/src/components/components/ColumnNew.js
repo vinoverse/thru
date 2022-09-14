@@ -76,7 +76,13 @@ const ColumnNew = () => {
 
     const generateQrCode = async (eventItem, contract, tokenId, originUrl) => {
         try {
-            const respone = await QRCode.toDataURL("eventId=" + eventItem.id + "&conAdr=" + contract + "&tokenId=" + tokenId);
+            let data = "eventId=" + eventItem.id + "&conAdr=" + contract + "&tokenId=" + tokenId;
+
+            if ("walletAddress" in eventItem) {
+                data += "&walletAddress=" + eventItem.walletAddress;
+            }
+
+            const respone = await QRCode.toDataURL(data);
             setQrUrl(respone);
             setOriginUrl(originUrl);
             setTicketEvent(eventItem);

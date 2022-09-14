@@ -346,6 +346,10 @@ h6,
     color: #0d0c22;
 }
 
+.modal-title, .event-title {
+  margin-left: 15px;
+}
+
 h1, .h1 {
     font-size: 50px;
     margin-bottom: 20px;
@@ -2224,7 +2228,7 @@ address {
       position: relative;
       padding-right: 100px;
       border: solid 1px #888;
-      background: #FDFBF8;
+      background: $white;
       box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.09);
       img {
         width: 80px;
@@ -2287,6 +2291,35 @@ address {
       }
     }
 }
+
+.activity-list-text {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    padding: 20px;
+    padding-right: 20px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    position: relative;
+    padding-right: 100px;
+    border: solid 1px #888;
+    background: $white;
+    box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.09);
+    .act_list_text_only {
+      padding-left: 10px;
+      .act_list_date {
+        display: block;
+      }
+      h4{
+        font-size: 16px;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
 #sale.active, #follow.active, #offer.active, #like.active{
     background: $color !important;
     color: $white;
@@ -3557,7 +3590,7 @@ img.img-rounded{
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-    color: $white;
+    color: $black_soft;
 }
 .list.s3 {
     display: inline;

@@ -3,10 +3,7 @@ package com.thru.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thru.mapper.EventMapper;
 import com.thru.mapper.ParticipationMapper;
-import com.thru.model.Event;
-import com.thru.model.NFT;
-import com.thru.model.Participation;
-import com.thru.model.User;
+import com.thru.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,8 +49,8 @@ public class EventService {
     }
 
     @Transactional(readOnly = true)
-    public Map<String, List<Event>> getEventsByNfts(List<NFT> nftList) {
-        Map<String, List<Event>> eventMap = new HashMap<>();
+    public Map<String, List<EventInterface>> getEventsByNfts(List<NFT> nftList) {
+        Map<String, List<EventInterface>> eventMap = new HashMap<>();
 
         try {
             List<String> contractAddressList = new ArrayList<>();
@@ -68,7 +65,20 @@ public class EventService {
                     String contractAddress = eventItem.getContractAddress();
 
                     if (!eventMap.containsKey(contractAddress)) {
-                        List<Event> imsiEventList = new ArrayList<>();
+                        List<EventInterface> imsiEventList = new ArrayList<>();
+                        eventMap.put(contractAddress, imsiEventList);
+                    }
+
+                    eventMap.get(contractAddress).add(eventItem);
+                }
+
+                List<UserEvent> userEvents = eventMapper.selectUserEventByContractAddressList(contractAddressList);
+
+                for (UserEvent eventItem : userEvents) {
+                    String contractAddress = eventItem.getContractAddress();
+
+                    if (!eventMap.containsKey(contractAddress)) {
+                        List<EventInterface> imsiEventList = new ArrayList<>();
                         eventMap.put(contractAddress, imsiEventList);
                     }
 
@@ -78,5 +88,62 @@ public class EventService {
         } catch (Exception e) {}
 
         return eventMap;
+    }
+
+    @Transactional(readOnly = false)
+    public String addUserEvent(UserEvent event, String walletAddress) {
+        String resultMessage = "";
+
+        try {
+            event.setWalletAddress(walletAddress);
+            eventMapper.insertUserEvent(event);
+            resultMessage = "success";
+        } catch (Exception e) {
+            resultMessage = "error";
+        }
+
+        return resultMessage;
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserEvent> getUserEvent(String walletAddress) {
+        List<UserEvent> events = null;
+
+        try {
+            events = eventMapper.selectUserEventByWalletAddress(walletAddress);
+        } catch (Exception e) {
+            events = null;
+        }
+
+        return events;
+    }
+
+    @Transactional(readOnly = false)
+    public String deleteUserEvent(UserEvent event, String walletAddress) {
+        String resultMessage = "";
+
+        try {
+            event.setWalletAddress(walletAddress);
+            eventMapper.deleteUserEvent(event);
+            resultMessage = "success";
+        } catch (Exception e) {
+            resultMessage = "error";
+        }
+
+        return resultMessage;
+    }
+
+    public String editUserEvent(UserEvent event, String walletAddress) {
+        String resultMessage = "";
+
+        try {
+            event.setWalletAddress(walletAddress);
+            eventMapper.updateUserEvent(event);
+            resultMessage = "success";
+        } catch (Exception e) {
+            resultMessage = "error";
+        }
+
+        return resultMessage;
     }
 }
