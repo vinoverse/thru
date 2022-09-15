@@ -52,18 +52,21 @@ public class MoralisNFTService implements NFTService{
                 String metadata = (String) item.get("metadata");
 
                 if (tokenUri != null) {
-                    Request tokenRequest = new Request.Builder().url(tokenUri).get()
-                            .addHeader("Accept", "application/json")
-                            .build();
-                    Response tokenResponse = client.newCall(tokenRequest).execute();
-                    if (tokenResponse.code() == 200) {
-                        ObjectMapper tokenMapper = new ObjectMapper();
-                        Map<String, Object> tokenMap = tokenMapper.readValue(tokenResponse.body().string(), Map.class);
+                    try {
+                        Request tokenRequest = new Request.Builder().url(tokenUri).get()
+                                .addHeader("Accept", "application/json")
+                                .build();
+                        Response tokenResponse = client.newCall(tokenRequest).execute();
+                        if (tokenResponse.code() == 200) {
+                            ObjectMapper tokenMapper = new ObjectMapper();
+                            Map<String, Object> tokenMap = tokenMapper.readValue(tokenResponse.body().string(), Map.class);
 
-                        name = (String) tokenMap.get("name");
-                        description = (String) tokenMap.get("description");
-                        image = (String) tokenMap.get("image");
-                    }
+                            name = (String) tokenMap.get("name");
+                            description = (String) tokenMap.get("description");
+                            image = (String) tokenMap.get("image");
+                        }
+                    } catch (Exception e) {}
+
                 }
 
                 if ((image == "") && (metadata != null)){
