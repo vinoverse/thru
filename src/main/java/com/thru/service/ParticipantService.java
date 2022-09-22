@@ -27,7 +27,7 @@ public class ParticipantService {
 
     @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
     public String registeParticipation(String contractAddress, Long tokenId, Long eventId, String email, User user) {
-        String resultMessage = "등록된 행사가 아닙니다.";
+        String resultMessage = "ooooooooops!!";
 
         if (contractAddress != null) {
             Event event = eventMapper.selectByContractAddressAndUserId(eventId, contractAddress, user.getId());
@@ -45,9 +45,9 @@ public class ParticipantService {
 
                         participationMapper.insert(newParticipation);
 
-                        resultMessage = "참여해주셔서 감사합니다.";
+                        resultMessage = "Thank you for WAHT-UP!";
                     } else {
-                        resultMessage = "이미 참여했습니다. 참여 시간 : " + participation.getCreateDate();
+                        resultMessage = "You’ve been already WAHTed……………";
                     }
                 }
             }
@@ -66,9 +66,9 @@ public class ParticipantService {
 
                         participationimsiMapper.insert(newParticipationimsi);
 
-                        resultMessage = "참여해주셔서 감사합니다.";
+                        resultMessage = "Thank you for WAHT-UP!";
                     } else {
-                        resultMessage = "이미 참여했습니다. 참여 시간 : " + participationimsi.getCreateDate();
+                        resultMessage = "You’ve been already WAHTed……………";
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class ParticipantService {
     }
 
     public String registeParticipationForUserEvent(String contractAddress, Long tokenId, Long eventId, String walletAddress) {
-        String resultMessage = "등록된 행사가 아닙니다.";
+        String resultMessage = "ooooooooops!!";
 
         if (contractAddress != null) {
             UserEvent userEvent = eventMapper.selectUserEventByContractAddressAndWalletAddress(eventId, contractAddress, walletAddress);
@@ -96,9 +96,9 @@ public class ParticipantService {
 
                         participationForUserMapper.insert(newParticipation);
 
-                        resultMessage = "참여해주셔서 감사합니다.";
+                        resultMessage = "Thank you for WAHT-UP!";
                     } else {
-                        resultMessage = "이미 참여했습니다. 참여 시간 : " + participation.getCreateDate();
+                        resultMessage = "You’ve been already WAHTed……………";
                     }
                 }
             }
