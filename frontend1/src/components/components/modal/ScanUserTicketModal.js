@@ -69,7 +69,7 @@ const ScanUserTicketModal = (props) => {
         <Modal.Title className="event-title">{event.title}</Modal.Title>
         <Modal.Body>
             <QrReader
-                constraints={{facingMode:'environment'}}
+                constraints={{facingMode:'user'}}
                 scanDelay={500}
                 onResult={(result, error) => {
                     if (!!result) {
