@@ -14,7 +14,7 @@ const MyVerticallyCenteredModal = (props) => {
         centered
       >
         <Modal.Body>
-            <h3>Scanned Result : {scandata}</h3>
+            <h3>{scandata}</h3>
         </Modal.Body>
       </Modal>
     );
